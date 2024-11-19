@@ -1,5 +1,0 @@
--List style green(dunkel)
--Drag und Drop
--Mit Localestorage(alternativ richtiger Speicher)
--Löschen, verschieben, erstellen, checken, entchecken
--Mehrere Listen erstellen(So ähnlich wie bei AcoustiFlow)
