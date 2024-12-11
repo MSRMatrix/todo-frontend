@@ -1,0 +1,11 @@
+.header {
+  h1 {
+    font-weight: bolder;
+    font-family: "Caveat", "Arial";
+    text-align: center;
+    margin: 0 auto;
+    background-image: linear-gradient(to right, #ff7e5f, #feb47b);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+}

@@ -1,0 +1,32 @@
+.startpage {
+  color: white;
+  text-align: center;
+  padding: 30px;
+  max-width: 90%;
+  margin: auto;
+  transition: box-shadow 0.3s ease;
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  li {
+    margin: 15px 0;
+    font-size: 1.3em;
+    width: fit-content;
+    max-width: 136px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  li:hover {
+    color: #feb47b;
+  }
+}

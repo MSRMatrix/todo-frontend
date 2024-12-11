@@ -1,8 +1,10 @@
+import "./header.css"
+
 const Header = () => {
     return(
-        <>
-        <h1>Your own Todo-list</h1>
-        </>
+        <div className="header">
+        <h1>TodoWave</h1>
+        </div>
     )
 }
 
