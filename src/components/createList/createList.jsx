@@ -1,26 +1,26 @@
 import { useContext, useState } from "react";
 import { List } from "../context/ContextData";
 
-const Create = () => {
+const CreateTodo = () => {
   const { list, setList } = useContext(List);
-  const [newTask, setNewTask] = useState("");
+  const [newList, setNewList] = useState("");
 
   function createTodo(e) {
     e.preventDefault();
   
-    if (newTask.trim().length <= 0) {
+    if (newList.trim().length <= 0) {
       return alert("Input should not be empty!");
     }
   
     setList((prevList) => [
       ...prevList,
       {
-        todo: newTask,
+        todo: newList,
         done: false,
       },
     ]);
   
-    setNewTask("");
+    setNewList("");
     e.target.reset()
   }
   
@@ -37,7 +37,7 @@ const Create = () => {
             type="text"
             required
             minLength={1}
-            onChange={(e) => setNewTask(e.target.value)}
+            onChange={(e) => setNewList(e.target.value)}
           />
           <button type="submit">Create list</button>
         </fieldset>
@@ -46,4 +46,4 @@ const Create = () => {
   );
 };
 
-export default Create;
+export default CreateTodo;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import { createBrowserRouter, Router, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { List, Task, User } from "./components/context/ContextData";
 import Dashboard from "./components/dashboard/Dashboard";
 import Registration from "./components/registration/Registration";
