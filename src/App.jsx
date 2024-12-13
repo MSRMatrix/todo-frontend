@@ -7,6 +7,7 @@ import Registration from "./components/registration/Registration";
 import Guest from "./components/guest/Guest";
 import Login from "./components/login/Login";
 import Startpage from "./components/startpage/Startpage";
+import Workspace from "./components/workspace/Workspace";
 
 function App() {
   const [user, setUser] = useState([]);
@@ -34,6 +35,10 @@ function App() {
           element: <Guest />,
           path: "/guest",
         },
+        {
+          element: <Workspace />,
+          path: "/workspace"
+        }
       ],
     },
     {

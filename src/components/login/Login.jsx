@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { User } from "../context/ContextData";
 
 const Login = () => {
   const navigate = useNavigate();
   const URL = import.meta.env.VITE_BACKENDURL;
   const [see, setSee] = useState(false);
   const [toggle, setToggle] = useState(false);
+  const {user, setUser} = useContext(User)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,11 +30,14 @@ const Login = () => {
       }),
     });
 
+    const data = await response.json()
+
     if (!response.ok) {
       console.error("Error fetching category data:", response.statusText);
     } else {
+      setUser(data)
       alert("Registration successfully!");
-      navigate("/");
+      navigate("/workspace");
     }
   };
 

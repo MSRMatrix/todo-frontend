@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Task } from "../context/ContextData";
 
-const CreateTodo = () => {
+const CreateTask = () => {
   const { task, setTask } = useContext(Task);
   const [newTask, setNewTask] = useState("");
 
@@ -42,4 +42,4 @@ const CreateTodo = () => {
   );
 };
 
-export default CreateTodo;
+export default CreateTask;
