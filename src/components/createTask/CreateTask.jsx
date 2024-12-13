@@ -1,39 +1,60 @@
-import { useContext, useState } from "react";
-import { Task } from "../context/ContextData";
+import { useContext } from "react";
+import { List, Task, User } from "../context/ContextData";
+import { getData } from "../functions/getData";
 
-const CreateTask = () => {
+const URL = import.meta.env.VITE_BACKENDURL;
+
+const CreateTask = ({listId}) => {
+  const { user, setUser } = useContext(User);
+  const { list, setList } = useContext(List);
   const { task, setTask } = useContext(Task);
-  const [newTask, setNewTask] = useState("");
 
-  function createTodo(e) {
+ async function handleSubmit(e, listId) {
     e.preventDefault();
-  
-    if (newTask.trim().length <= 0) {
-      return alert("Input should not be empty!");
+
+    const formData = new FormData(e.target);
+    const formDataObject = {};
+    formData.forEach((value, key) => {
+      formDataObject[key] = value;
+    });
+
+    try{
+      const response = await fetch(`${URL}/task`,{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          task: formDataObject.task,
+          listId: listId,
+        }),
+        
+      })
+      const data = await response.json()
+      if(!response.ok){
+        e.target.reset()
+        return alert(data.message)
+      }
+      else{
+         getData(setUser, setList, setTask)
+         e.target.reset()
+        return alert("Task created!")
+      }
+    }catch(error){
+      console.log(error);
     }
-  
-    setTask((prevTask) => [
-      ...prevTask,
-      {
-        todo: newTask,
-        done: false,
-      },
-    ]);
-  
-    setNewTask("");
-    e.target.reset()
   }
   
   return (
     <>
-      <form action="" onSubmit={createTodo}>
+      <form action="" onSubmit={(e) => handleSubmit(e, listId)}>
         <fieldset>
           <legend>New Task</legend>
           <input
             type="text"
             required
-            minLength={1}
-            onChange={(e) => setNewTask(e.target.value)}
+            name="task"
           />
           <button type="submit">Create task</button>
         </fieldset>
