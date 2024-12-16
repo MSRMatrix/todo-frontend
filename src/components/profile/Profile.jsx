@@ -4,7 +4,6 @@ import { User } from "../context/ContextData";
 
 const Profile = () => {
     const { user, setUser } = useContext(User)
-    console.log(user);
     
     return(
         <>

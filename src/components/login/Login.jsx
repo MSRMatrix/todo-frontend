@@ -32,8 +32,18 @@ const Login = () => {
 
     const data = await response.json()
 
+    if(response.status === 410){
+      alert("You need to verify your email adress")
+      return navigate("/verify")
+    }
+
+    if(response.status === 401){
+      alert(data.message)
+      return navigate("/")
+    }
     if (!response.ok) {
       console.error("Error fetching category data:", response.statusText);
+      return alert(data.message)
     } else {
       setUser(data)
       alert("Registration successfully!");
