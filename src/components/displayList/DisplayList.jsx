@@ -61,7 +61,7 @@ const DisplayList = () => {
         <div key={item._id}>
           <h2>{item.name}</h2>
           <button onClick={(e) => deleteList(item._id)}>Delete</button>
-          <p>{item.description}</p>
+          <p>{item.description}</p><button>Empty list</button>
           <ul>
             <ul>
               {task.map((taskItem) =>

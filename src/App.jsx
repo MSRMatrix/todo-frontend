@@ -9,6 +9,7 @@ import Login from "./components/login/Login";
 import Startpage from "./components/startpage/Startpage";
 import Workspace from "./components/workspace/Workspace";
 import Verify from "./components/verify/Verify";
+import Profile from "./components/profile/Profile";
 
 function App() {
   const [user, setUser] = useState([]);
@@ -43,7 +44,11 @@ function App() {
         {
           element: <Workspace />,
           path: "/workspace"
-        }
+        },
+        {
+          element: <Profile />,
+          path: "/profile"
+        },
       ],
     },
     {

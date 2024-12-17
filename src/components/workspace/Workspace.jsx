@@ -4,6 +4,7 @@ import { useContext, useEffect } from "react";
 import { List, Task, User } from "../context/ContextData";
 import CreateList from "../createList/CreateList";
 import { getData } from "../functions/getData";
+import Options from "../options/Options";
 
 const Workspace = () => {
   const { user, setUser } = useContext(User);
@@ -15,7 +16,8 @@ const Workspace = () => {
   }, []);
   return (
     <>
-      <Profile />
+    <h2>{user.username}</h2>
+      <Options />
       <CreateList />
       <DisplayList />
     </>

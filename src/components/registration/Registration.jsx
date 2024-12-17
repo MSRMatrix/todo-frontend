@@ -30,8 +30,8 @@ const Registration = () => {
     if (!response.ok) {
       console.error("Error fetching category data:", response.statusText);
     } else {
-      alert("Registration successfully!");
-      navigate("/login");
+      alert("You need to verify your email address before logging in!");
+      navigate("/verify");
     }
   }
 
