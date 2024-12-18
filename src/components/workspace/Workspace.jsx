@@ -16,7 +16,6 @@ const Workspace = () => {
   }, []);
   return (
     <>
-    <h2>{user.username}</h2>
       <Options />
       <CreateList />
       <DisplayList />

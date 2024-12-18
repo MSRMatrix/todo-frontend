@@ -10,6 +10,7 @@ import Startpage from "./components/startpage/Startpage";
 import Workspace from "./components/workspace/Workspace";
 import Verify from "./components/verify/Verify";
 import Profile from "./components/profile/Profile";
+import TwoFactorAuthentication from "./components/twoFactorAuthentication/TwoFactorAuthentication";
 
 function App() {
   const [user, setUser] = useState([]);
@@ -32,6 +33,10 @@ function App() {
         {
           element: <Verify />,
           path: "/verify",
+        },
+        {
+          element: <TwoFactorAuthentication />,
+          path: "/two-factor-authentication",
         },
         {
           element: <Registration />,

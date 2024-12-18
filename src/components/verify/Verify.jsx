@@ -32,7 +32,7 @@ const Verify = () => {
         return;
       } else {
         alert("Profile verified!");
-        navigate("/login");
+        navigate("/workspace");
       }
     } catch (error) {
       console.log(error);

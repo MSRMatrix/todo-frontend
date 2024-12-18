@@ -1,7 +1,10 @@
 import { useNavigate } from "react-router-dom";
+import { User } from "../context/ContextData";
+import { useContext } from "react";
 
 const TwoFactorAuthentication = () => {
     const URL = import.meta.env.VITE_BACKENDURL;
+    const {user, setUser} = useContext(User)
 
   const navigate = useNavigate();
 
@@ -14,7 +17,7 @@ const TwoFactorAuthentication = () => {
     });
 
     try {
-      const response = await fetch(`${URL}/user/verify`, {
+      const response = await fetch(`${URL}/user/test-two-factor-authentication`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -32,7 +35,7 @@ const TwoFactorAuthentication = () => {
         return;
       } else {
         alert("Profile verified!");
-        navigate("/login");
+        navigate("/workspace");
       }
     } catch (error) {
       console.log(error);

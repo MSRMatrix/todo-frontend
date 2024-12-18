@@ -55,13 +55,36 @@ const DisplayList = () => {
     }
   };
 
+  const emptyList = async (listId) => {
+    const password = prompt("Enter your password: ");
+    try {
+      const response = await fetch(`${URL}/list/empty-list`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({ _id: listId, password: password }),
+      });
+      if (!response.ok) {
+        return alert("List could not be deleted!");
+      } else {
+        getData(setUser, setList, setTask);
+        return alert("List is now empty!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
   return (
     <>
       {list.map((item) => (
         <div key={item._id}>
           <h2>{item.name}</h2>
           <button onClick={(e) => deleteList(item._id)}>Delete</button>
-          <p>{item.description}</p><button>Empty list</button>
+          <p>{item.description}</p>{item.task.length >= 1 ? (<button onClick={() => emptyList(item._id)}>Empty list</button>) : ""}
           <ul>
             <ul>
               {task.map((taskItem) =>
