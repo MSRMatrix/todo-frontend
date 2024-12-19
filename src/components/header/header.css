@@ -1,11 +1,84 @@
 .header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   h1 {
     font-weight: bolder;
-    font-family: "Caveat", "Arial";
-    text-align: center;
-    margin: 0 auto;
     background-image: linear-gradient(to right, #ff7e5f, #feb47b);
     -webkit-background-clip: text;
     color: transparent;
+    text-shadow: 1px 1px 2px #feb47b, 0 0 0em #feb47b, 0 0 0.2em #feb47b;
+    position: relative;
+    width: 111px;
+
+    &::after {
+      content: "";
+      background-color: #feb47b;
+      box-shadow: 1px 1px 2px #feb47b, 0 0 0em #feb47b, 0 0 0.2em #feb47b;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 3px;
+      height: 4px;
+      width: inherit;
+      border-radius: 2px;
+      animation-name: underline;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+    }
+    span {
+      font-family: "Caveat", "Arial";
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+
+      &:nth-child(2) {
+        animation-name: second;
+      }
+      &:nth-child(4) {
+        animation-name: fourth;
+      }
+      &:nth-child(6) {
+        animation-name: sixth;
+      }
+      &:nth-child(8) {
+        animation-name: eighth;
+      }
+    }
+  }
+}
+@keyframes second {
+  20% {
+    text-shadow: 1px 1px 2px #d4fc79, 0 0 0em #d4fc79, 0 0 0.2em #d4fc79;
+    color: #d4fc79;
+  }
+}
+
+@keyframes fourth {
+  40% {
+    text-shadow: 1px 1px 2px #d4fc79, 0 0 0em #d4fc79, 0 0 0.2em #d4fc79;
+    color: #d4fc79;
+  }
+}
+
+@keyframes sixth {
+  60% {
+    text-shadow: 1px 1px 2px #d4fc79, 0 0 0em #d4fc79, 0 0 0.2em #d4fc79;
+    color: #d4fc79;
+  }
+}
+
+@keyframes eighth {
+  80% {
+    text-shadow: 1px 1px 2px #d4fc79, 0 0 0em #d4fc79, 0 0 0.2em #d4fc79;
+    color: #d4fc79;
+  }
+}
+
+@keyframes underline {
+  50% {
+    box-shadow: 1px 1px 2px #d4fc79, 0 0 0em #d4fc79, 0 0 0.2em #d4fc79;
+    background-color: #d4fc79;
   }
 }
