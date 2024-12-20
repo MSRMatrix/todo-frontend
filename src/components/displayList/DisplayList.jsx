@@ -1,105 +1,123 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { List, Task, User } from "../context/ContextData";
 import CreateTask from "../createTask/CreateTask";
 import { getData } from "../functions/getData";
-
-const URL = import.meta.env.VITE_BACKENDURL;
+import { deleteList } from "../functions/deleteList";
+import { removeTask } from "../functions/removeTask";
+import { emptyList } from "../functions/emptyList";
+import { checkTask } from "../functions/checkTask";
+import { updateTask } from "../functions/updateTask";
+import { updateList } from "../functions/updateList";
 
 const DisplayList = () => {
   const { user, setUser } = useContext(User);
   const { list, setList } = useContext(List);
   const { task, setTask } = useContext(Task);
-
-  const deleteList = async (listId) => {
-    const password = prompt("Enter your password: ");
-    try {
-      const response = await fetch(`${URL}/list`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({ _id: listId, password: password }),
-      });
-      if (!response.ok) {
-        return alert("List could not be deleted!");
-      } else {
-        getData(setUser, setList, setTask);
-        return alert("List deleted!");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const removeTask = async (listId, _id) => {
-    try {
-      const response = await fetch(`${URL}/task`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({listId: listId, _id: _id}),
-      });
-      const data = await response.json();
-
-      if (!response.ok) {
-        return alert("Task could not be deleted!");
-      } else {
-        getData(setUser, setList, setTask);
-        alert("Task deleted!");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const emptyList = async (listId) => {
-    const password = prompt("Enter your password: ");
-    try {
-      const response = await fetch(`${URL}/list/empty-list`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({ _id: listId, password: password }),
-      });
-      if (!response.ok) {
-        return alert("List could not be deleted!");
-      } else {
-        getData(setUser, setList, setTask);
-        return alert("List is now empty!");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+  const [update, setUpdate] = useState("");
 
   return (
     <>
-      {list.map((item) => (
-        <div key={item._id}>
-          <h2>{item.name}</h2>
-          <button onClick={(e) => deleteList(item._id)}>Delete</button>
-          <p>{item.description}</p>{item.task.length >= 1 ? (<button onClick={() => emptyList(item._id)}>Empty list</button>) : ""}
+      {list.map((listItem) => (
+        <div key={listItem._id}>
+          {update !== listItem._id ? (
+            <div><h2>{listItem.name}</h2>
+            <p>{listItem.description}</p></div>
+            
+          ) : (
+            <form action="" onSubmit={(e) =>
+                          updateList(
+                            e,
+                            listItem.task,
+                            listItem._id,
+                            setUser,
+                            setList,
+                            setTask,
+                            setUpdate
+                          )
+                        }>
+              <input name="name" defaultValue={listItem.name} />
+              <textarea name="description" defaultValue={listItem.description} />
+              <button type="submit">Update</button>
+            </form>
+          )}
+          <i
+            onClick={() =>
+              setUpdate(update === listItem._id ? "" : listItem._id)
+            }
+            className="fa-solid fa-pencil"
+          ></i>
+
+          
+          <button
+            onClick={(e) => deleteList(listItem._id, setUser, setList, setTask)}
+          >
+            Delete
+          </button>
+          {listItem.task.length >= 1 ? (
+            <button
+              onClick={() => emptyList(listItem._id, setUser, setList, setTask)}
+            >
+              Empty list
+            </button>
+          ) : (
+            ""
+          )}
           <ul>
             <ul>
               {task.map((taskItem) =>
-                taskItem.listId === item._id ? (
+                taskItem.listId === listItem._id ? (
                   <li
                     key={taskItem._id}
                     style={{
                       textDecoration: taskItem.done ? "line-through" : "",
                     }}
-                  ><button onClick={() => removeTask(item._id, taskItem._id)}>Delete</button>
-                    {taskItem.task}
+                  >
                     <button
+                      onClick={() =>
+                        removeTask(listItem._id, taskItem._id, setList, setTask)
+                      }
+                    >
+                      Delete
+                    </button>
+                    {update !== taskItem._id ? (
+                      <p>{taskItem.task}</p>
+                    ) : (
+                      <form
+                        action=""
+                        onSubmit={(e) =>
+                          updateTask(
+                            e,
+                            taskItem.task,
+                            taskItem._id,
+                            setUser,
+                            setList,
+                            setTask,
+                            setUpdate
+                          )
+                        }
+                      >
+                        <input defaultValue={taskItem.task} />
+                        <button type="submit">Update</button>
+                      </form>
+                    )}
+                    {!taskItem.done ? (
+                      <i
+                        onClick={() =>
+                          setUpdate(update === taskItem._id ? "" : taskItem._id)
+                        }
+                        className="fa-solid fa-pencil"
+                      ></i>
+                    ) : (
+                      ""
+                    )}
+
+                    <input
                       type="checkbox"
-                      onClick={() => (taskItem.done = !taskItem.done)}
-                    ></button>
+                      defaultChecked={taskItem.done}
+                      onClick={() =>
+                        checkTask(taskItem._id, setUser, setList, setTask)
+                      }
+                    />
                   </li>
                 ) : (
                   ""
@@ -107,7 +125,7 @@ const DisplayList = () => {
               )}
             </ul>
           </ul>
-          <CreateTask listId={item._id} />
+          <CreateTask listId={listItem._id} />
         </div>
       ))}
     </>

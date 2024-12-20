@@ -3,6 +3,7 @@ import { logout } from "../functions/logout";
 import { resetData } from "../functions/resetData";
 import { useContext } from "react";
 import { List, Task, User } from "../context/ContextData";
+import "./options.css"
 
 const Options = () => {
     const URL = import.meta.env.VITE_BACKENDURL;
@@ -13,7 +14,7 @@ const Options = () => {
     const { task, setTask } = useContext(Task);
     
   return (
-    <div className="Navlink-div">
+    <div className="nav-link">
     <li onClick={() => navigate("/profile")}>Profile options</li>
     <li onClick={() => resetData(setUser, setList, setTask)}>Reset your List</li>
     <li onClick={() => logout(navigate, URL)}>Logout</li>
