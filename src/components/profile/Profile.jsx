@@ -1,8 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { List, Task, User } from "../context/ContextData";
 import { getData } from "../functions/getData";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
+  const navigate = useNavigate()
   const URL = import.meta.env.VITE_BACKENDURL;
   const { user, setUser } = useContext(User);
   const { list, setList } = useContext(List);
@@ -58,6 +60,7 @@ const Profile = () => {
           {authentication ? "Deactivate Two Factor Authentication" : "Activate Two Factor Authentication"}
         </button>
       </div>
+<button onClick={() => navigate("/workspace")}>Back</button>
     </>
   );
 };
