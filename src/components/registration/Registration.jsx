@@ -1,64 +1,41 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { registrationFunction } from "../functions/registrationFunction";
+import { Field } from "../context/ContextData";
+import { inputFunction } from "../functions/inputFunction";
 
 const Registration = () => {
   const navigate = useNavigate();
-  const URL = import.meta.env.VITE_BACKENDURL;
   const [see, setSee] = useState(false);
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const formDataObject = {};
-    formData.forEach((value, key) => {
-      formDataObject[key] = value;
-    });
-    
-    const response = await fetch(`${URL}/user`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify({
-        username: formDataObject.username,
-        email: formDataObject.email,
-        password: formDataObject.password,
-      }),
-    });
-
-    if (!response.ok) {
-      console.error("Error fetching category data:", response.statusText);
-    } else {
-      alert("You need to verify your email address before logging in!");
-      navigate("/verify");
-    }
-  }
+  const { field, setField } = useContext(Field);
 
   return (
     <>
-      <form action="" onSubmit={handleSubmit}>
+      <form onSubmit={(e) => registrationFunction(e, navigate)}>
         <fieldset>
           <legend>Registration</legend>
 
-          <legend>Username:</legend>
-          <input type="text" name="username" minLength={8} required />
-
-          <legend>Email:</legend>
-          <input type="email" name="email" required />
-
-          <legend>Password:</legend>
-          <input
-            type={see ? "text" : "password"}
-            name="password"
-            minLength={8}
-            required
-          />
-            {!see ? (
-              <i className="fa-solid fa-eye" onClick={() => setSee((prevMode) => !prevMode)}></i>
-            ) : (
-              <i className="fa-solid fa-eye-slash" onClick={() => setSee((prevMode) => !prevMode)}></i>
-            )}
+          {["username", "email", "password"].map((key) => (
+            <div key={key}>
+              <legend>{key.charAt(0).toUpperCase() + key.slice(1)}:</legend>
+              <input
+                type={key === "password" && !see ? "password" : "text"}
+                name={key}
+                value={field[key].value}
+                onChange={(e)=>inputFunction(e, setField)}
+                style={{boxShadow: field[key].message.length > 1 ? "0px 0px 4px 4px red" : ""}}
+                minLength={key === "password" || key === "username" ? 8 : undefined}
+                required
+              />
+              {key === "password" && (
+                <i
+                  className={`fa-solid ${see ? "fa-eye-slash" : "fa-eye"}`}
+                  onClick={() => setSee(!see)}
+                ></i>
+              )}
+              <p>{field[key].message}</p>
+            </div>
+          ))}
 
           <button type="submit">Register</button>
         </fieldset>

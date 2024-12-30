@@ -47,6 +47,7 @@ function Startpage(){
         <div className="startpage">
         <ul>
             <li onClick={() => navigate("/login")}>Login</li>
+            <li onClick={() => navigate("/verify")}>Verify your Profile</li>
             <li onClick={() => navigate("/registration")}>Registration</li>
             <li onClick={() => navigate("/guest")}>Guest</li>
         </ul>

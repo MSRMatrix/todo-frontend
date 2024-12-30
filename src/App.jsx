@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { List, Task, User } from "./components/context/ContextData";
+import { Field, List, Task, User } from "./components/context/ContextData";
 import Dashboard from "./components/dashboard/Dashboard";
 import Registration from "./components/registration/Registration";
 import Guest from "./components/guest/Guest";
@@ -16,6 +16,11 @@ function App() {
   const [user, setUser] = useState([]);
   const [list, setList] = useState([]);
   const [task, setTask] = useState([]);
+  const [field, setField] = useState({
+    username: { value: "", message: "" },
+    email: { value: "", message: "" },
+    password: { value: "", message: "" },
+  });
 
   const router = createBrowserRouter([
     {
@@ -48,17 +53,17 @@ function App() {
         },
         {
           element: <Workspace />,
-          path: "/workspace"
+          path: "/workspace",
         },
         {
           element: <Profile />,
-          path: "/profile"
+          path: "/profile",
         },
       ],
     },
     {
       element: <Dashboard />,
-      path: "*"
+      path: "*",
     },
   ]);
 
@@ -67,7 +72,9 @@ function App() {
       <User.Provider value={{ user, setUser }}>
         <List.Provider value={{ list, setList }}>
           <Task.Provider value={{ task, setTask }}>
-            <RouterProvider router={router} />
+            <Field.Provider value={{ field, setField }}>
+              <RouterProvider router={router} />
+            </Field.Provider>
           </Task.Provider>
         </List.Provider>
       </User.Provider>
