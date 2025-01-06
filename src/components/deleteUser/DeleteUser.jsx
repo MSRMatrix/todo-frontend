@@ -1,38 +1,16 @@
 import { useNavigate } from "react-router-dom";
-
-const URL = import.meta.env.VITE_BACKENDURL;
+import { Message } from "../context/ContextData";
+import { useContext } from "react";
+import { deleteUser } from "../functions/deleteUser";
 
 const DeleteUser = () => {
   const navigate = useNavigate();
-
-  async function handleSubmit() {
-    const password = prompt("Please type in your password: ");
-    try {
-      const response = await fetch(`${URL}/user`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({ password: password }),
-      });
-      if (!response.ok) {
-        alert("Profile not deleted!");
-        return;
-      }
-      {
-        alert("User deleted");
-        return navigate("/");
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  const { message, setMessage } = useContext(Message);
 
   return (
     <>
       <h2>Do you want to delete your profile?</h2>
-      <button onClick={handleSubmit}>Yes</button>
+      <button onClick={() => deleteUser(setMessage, navigate)}>Yes</button>
       <button onClick={() => navigate("/workspace")}>No</button>
     </>
   );

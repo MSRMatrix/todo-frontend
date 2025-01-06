@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import { User } from "../context/ContextData";
+import { Message, User } from "../context/ContextData";
 import { useContext } from "react";
 
 const TwoFactorAuthentication = () => {
-    const URL = import.meta.env.VITE_BACKENDURL;
-    const {user, setUser} = useContext(User)
-
+  const URL = import.meta.env.VITE_BACKENDURL;
+  const { user, setUser } = useContext(User);
+  const { message, setMessage } = useContext(Message);
   const navigate = useNavigate();
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e, setMessage) {
     e.preventDefault();
     const formData = new FormData(e.target);
     const formDataObject = {};
@@ -17,24 +17,37 @@ const TwoFactorAuthentication = () => {
     });
 
     try {
-      const response = await fetch(`${URL}/user/test-two-factor-authentication`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({
-          email: formDataObject.email,
-          code: formDataObject.code,
-        }),
-      });
+      const response = await fetch(
+        `${URL}/user/test-two-factor-authentication`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({
+            email: formDataObject.email,
+            code: formDataObject.code,
+          }),
+        }
+      );
       const data = await response.json();
-      
+      const text =
+      data?.errors?.map((item) => item.msg).join(" \n") || data.message;
       if (!response.ok) {
-        alert(data.message);
+        
+        setMessage({
+        topic: text,
+        show: true,
+      });
+        console.log(data.message);
         return;
       } else {
-        alert("Profile verified!");
+        setMessage({
+          topic: text,
+          show: true,
+        });
+        console.log("Profile verified!");
         navigate("/workspace");
       }
     } catch (error) {
@@ -43,7 +56,7 @@ const TwoFactorAuthentication = () => {
   }
   return (
     <>
-      <form action="" onSubmit={handleSubmit}>
+      <form action="" onSubmit={(e) => handleSubmit(e, setMessage)}>
         <fieldset>
           <legend>Two-factor Authentication</legend>
 
@@ -58,6 +71,6 @@ const TwoFactorAuthentication = () => {
       </form>
     </>
   );
-}
+};
 
 export default TwoFactorAuthentication;

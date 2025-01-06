@@ -7,7 +7,8 @@ export const updateList = async (
   setUser,
   setList,
   setTask,
-  setUpdate
+  setUpdate,
+  setMessage
 ) => {
   e.preventDefault();
   const URL = import.meta.env.VITE_BACKENDURL;
@@ -34,12 +35,21 @@ export const updateList = async (
       body: JSON.stringify({ _id: _id, name: formDataObject.name, description: formDataObject.description, oldList: oldList }),
     });
     const data = await response.json();
+    const text = data?.errors?.map((item) => item.msg).join(" \n") || data.message
     if (!response.ok) {
-      return alert(data.message);
+      setMessage({
+      topic: text,
+      show: true
+    })
+      return 
     } else {
       getData(setUser, setList, setTask);
       console.log("List updated!");
       setUpdate("");
+      setMessage({
+        topic: text,
+        show: true
+      })
       return;
     }
   } catch (error) {

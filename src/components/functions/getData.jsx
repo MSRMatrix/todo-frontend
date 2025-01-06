@@ -9,13 +9,13 @@ export const getData = async (setUser, setList, setTask) => {
         credentials: "include",
       });
       const data = await response.json();
-
       if (!response.ok) {
-        return alert("Data not there!");
+        return console.log("Data not there!");
       } else {
         setUser(data.user)
         setList(data.list)
         setTask(data.task)
+        return
       }
     } catch (error) {
       console.log(error);

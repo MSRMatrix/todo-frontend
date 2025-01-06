@@ -1,17 +1,18 @@
 import { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { registrationFunction } from "../functions/registrationFunction";
-import { Field } from "../context/ContextData";
+import { Field, Message } from "../context/ContextData";
 import { inputFunction } from "../functions/inputFunction";
 
 const Registration = () => {
   const navigate = useNavigate();
   const [see, setSee] = useState(false);
   const { field, setField } = useContext(Field);
+  const { message, setMessage } = useContext(Message);
 
   return (
     <>
-      <form onSubmit={(e) => registrationFunction(e, navigate)}>
+      <form onSubmit={(e) => registrationFunction(e, navigate, setMessage)}>
         <fieldset>
           <legend>Registration</legend>
 
@@ -40,7 +41,6 @@ const Registration = () => {
           <button type="submit">Register</button>
         </fieldset>
       </form>
-
       <NavLink to="/">Back</NavLink>
     </>
   );

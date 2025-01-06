@@ -14,6 +14,7 @@ const Workspace = () => {
   useEffect(() => {
     getData(setUser, setList, setTask);
   }, []);
+
   return (
     <>
       <Options />

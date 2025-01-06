@@ -1,11 +1,14 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { verifyProfile } from "../functions/verifyProfile"
+import { useContext } from "react";
+import { Message } from "../context/ContextData";
 
 const Verify = () => {
   const navigate = useNavigate();
+  const { message, setMessage } = useContext(Message);
   return (
     <>
-      <form action="" onSubmit={(e) => verifyProfile(e, navigate)}>
+      <form action="" onSubmit={(e) => verifyProfile(e, navigate, setMessage)}>
         <fieldset>
           <legend>Verify Account</legend>
 

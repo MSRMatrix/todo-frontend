@@ -1,6 +1,15 @@
 import { getData } from "./getData";
 
-export const updateTask = async (e, oldTask, _id, setUser, setList, setTask, setUpdate) => {
+export const updateTask = async (
+  e,
+  oldTask,
+  _id,
+  setUser,
+  setList,
+  setTask,
+  setUpdate,
+  setMessage
+) => {
   e.preventDefault();
   const URL = import.meta.env.VITE_BACKENDURL;
   const newTask = e.target.elements[0].value.trim();
@@ -19,12 +28,22 @@ export const updateTask = async (e, oldTask, _id, setUser, setList, setTask, set
       body: JSON.stringify({ _id: _id, task: newTask, oldTask: oldTask }),
     });
     const data = await response.json();
+    const text =
+      data?.errors?.map((item) => item.msg).join(" \n") || data.message;
     if (!response.ok) {
-      return alert(data.message);
+      setMessage({
+        topic: text,
+        show: true,
+      });
+      return;
     } else {
       getData(setUser, setList, setTask);
       console.log("Task updated!");
-      setUpdate("")
+      setUpdate("");
+      setMessage({
+        topic: text,
+        show: true,
+      });
       return;
     }
   } catch (error) {

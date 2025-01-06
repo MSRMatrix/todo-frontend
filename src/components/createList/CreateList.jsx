@@ -1,50 +1,17 @@
 import { useContext } from "react";
 import { getData } from "../functions/getData";
-import { List, Task, User } from "../context/ContextData";
-
-const URL = import.meta.env.VITE_BACKENDURL;
+import { List, Message, Task, User } from "../context/ContextData";
+import { createList } from "../functions/createList";
 
 const CreateList = () => {
   const { list, setList } = useContext(List);
   const { task, setTask } = useContext(Task);
   const { user, setUser } = useContext(User);
-  async function handleSubmit(e) {
-    e.preventDefault();
-
-    const formData = new FormData(e.target);
-    const formDataObject = {};
-    formData.forEach((value, key) => {
-      formDataObject[key] = value;
-    });
-
-    try {
-      const response = await fetch(`${URL}/list`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({
-          name: formDataObject.name,
-          description: formDataObject.description,
-        }),
-      });
-      if (!response.ok) {
-        e.target.reset();
-        return alert("List could not be created!");
-      } else {
-        await getData(setUser, setList, setTask);
-        e.target.reset();
-        return alert("List created!");
-      }
-    } catch (error) {
-      alert(error, ": List could not be created!");
-    }
-  }
+  const { message, setMessage } = useContext(Message);
 
   return (
     <>
-      <form action="" onSubmit={handleSubmit}>
+      <form action="" onSubmit={(e) => createList(e, setMessage, getData, setUser, setList, setTask)}>
         <fieldset>
           <legend>Create list</legend>
           <legend>List Name</legend>

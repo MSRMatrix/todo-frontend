@@ -1,4 +1,4 @@
-export async function verifyProfile(e, navigate) {
+export async function verifyProfile(e, navigate, setMessage) {
     e.preventDefault();
     const URL = import.meta.env.VITE_BACKENDURL;
     const formData = new FormData(e.target);
@@ -20,12 +20,19 @@ export async function verifyProfile(e, navigate) {
         }),
       });
       const data = await response.json();
+
+      const text = data?.errors?.map((item) => item.msg).join(" \n") || data.message
       
       if (!response.ok) {
-        alert(data.message);
-        return;
+       return setMessage({
+          topic: text,
+          show: true
+        })
       } else {
-        alert("Profile verified!");
+        setMessage({
+          topic: text,
+          show: true
+        })
         navigate("/workspace");
       }
     } catch (error) {

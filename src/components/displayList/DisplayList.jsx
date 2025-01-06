@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { List, Task, User } from "../context/ContextData";
+import { List, Message, Task, User } from "../context/ContextData";
 import CreateTask from "../createTask/CreateTask";
 import { getData } from "../functions/getData";
 import { deleteList } from "../functions/deleteList";
@@ -13,6 +13,7 @@ const DisplayList = () => {
   const { user, setUser } = useContext(User);
   const { list, setList } = useContext(List);
   const { task, setTask } = useContext(Task);
+  const { message, setMessage } = useContext(Message);
   const [update, setUpdate] = useState("");
 
   return (
@@ -32,7 +33,8 @@ const DisplayList = () => {
                             setUser,
                             setList,
                             setTask,
-                            setUpdate
+                            setUpdate,
+                            setMessage
                           )
                         }>
               <input name="name" defaultValue={listItem.name} />
@@ -49,13 +51,13 @@ const DisplayList = () => {
 
           
           <button
-            onClick={(e) => deleteList(listItem._id, setUser, setList, setTask)}
+            onClick={(e) => deleteList(listItem._id, setUser, setList, setTask, setMessage)}
           >
             Delete
           </button>
           {listItem.task.length >= 1 ? (
             <button
-              onClick={() => emptyList(listItem._id, setUser, setList, setTask)}
+              onClick={() => emptyList(listItem._id, setUser, setList, setTask, setMessage)}
             >
               Empty list
             </button>
@@ -74,7 +76,7 @@ const DisplayList = () => {
                   >
                     <button
                       onClick={() =>
-                        removeTask(listItem._id, taskItem._id, setList, setTask)
+                        removeTask(listItem._id, taskItem._id, setList, setTask, setMessage)
                       }
                     >
                       Delete
@@ -92,7 +94,8 @@ const DisplayList = () => {
                             setUser,
                             setList,
                             setTask,
-                            setUpdate
+                            setUpdate,
+                            setMessage
                           )
                         }
                       >
@@ -115,7 +118,7 @@ const DisplayList = () => {
                       type="checkbox"
                       defaultChecked={taskItem.done}
                       onClick={() =>
-                        checkTask(taskItem._id, setUser, setList, setTask)
+                        checkTask(taskItem._id, setUser, setList, setTask, setMessage)
                       }
                     />
                   </li>

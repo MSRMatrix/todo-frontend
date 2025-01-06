@@ -1,6 +1,6 @@
 import { getData } from "./getData";
 
-export const deleteList = async (listId, setUser, setList, setTask) => {
+export const deleteList = async (listId, setUser, setList, setTask, setMessage) => {
     const URL = import.meta.env.VITE_BACKENDURL;
     const password = prompt("Enter your password: ");
     try {
@@ -12,11 +12,21 @@ export const deleteList = async (listId, setUser, setList, setTask) => {
         credentials: "include",
         body: JSON.stringify({ _id: listId, password: password }),
       });
+      const data = response.json()
+      const text = data.message
       if (!response.ok) {
-        return alert("List could not be deleted!");
+        setMessage({
+        topic: text,
+        show: true,
+      });
+        return console.log("List could not be deleted!");
       } else {
         getData(setUser, setList, setTask);
-        return alert("List deleted!");
+        setMessage({
+          topic: text,
+          show: true,
+        });
+        return console.log("List deleted!");
       }
     } catch (error) {
       console.log(error);

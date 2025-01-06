@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { User } from "../context/ContextData";
+import { Message, User } from "../context/ContextData";
 import { login } from "../functions/login";
 
 const Login = () => {
@@ -8,10 +8,11 @@ const Login = () => {
   const [see, setSee] = useState(false);
   const [toggle, setToggle] = useState(false);
   const {user, setUser} = useContext(User)
+  const { message, setMessage } = useContext(Message);
 
   return (
     <>
-      <form action="" onSubmit={(e) => login(e, navigate, setUser)}>
+      <form action="" onSubmit={(e) => login(e, navigate, setUser, setMessage)}>
         <fieldset>
           <legend>Registration</legend>
           <p onClick={() => setToggle((prevMode) => !prevMode)}>
