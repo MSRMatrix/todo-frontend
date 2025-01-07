@@ -1,0 +1,51 @@
+.cookie-banner {
+  background-color: rgba(0, 0, 0, 0.863);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: small;
+
+  .banner-button-div {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  button {
+    padding: 10px 20px;
+    background-color: #feb47b;
+    color: aliceblue;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: lightcyan;
+      color: #feb47b;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #feb47b;
+    color: aliceblue;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: lightcyan;
+      color: #feb47b;
+    }
+  }
+}
