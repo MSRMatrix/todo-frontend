@@ -1,6 +1,8 @@
 export const login = async (e, navigate, setUser, setMessage) => {
   e.preventDefault();
   const URL = import.meta.env.VITE_BACKENDURL;
+  console.log(URL);
+  
   const formData = new FormData(e.target);
   const formDataObject = {};
   formData.forEach((value, key) => {
