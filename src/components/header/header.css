@@ -49,32 +49,31 @@
   }
 }
 @keyframes second {
-  20% {
+  10% {
     text-shadow: 1px 1px 2px #d4fc79, 0 0 0em #d4fc79, 0 0 0.2em #d4fc79;
     color: #d4fc79;
   }
 }
 
 @keyframes fourth {
-  40% {
+  30% {
     text-shadow: 1px 1px 2px #d4fc79, 0 0 0em #d4fc79, 0 0 0.2em #d4fc79;
     color: #d4fc79;
   }
 }
 
 @keyframes sixth {
-  60% {
+  50% {
     text-shadow: 1px 1px 2px #d4fc79, 0 0 0em #d4fc79, 0 0 0.2em #d4fc79;
     color: #d4fc79;
   }
 }
 
 @keyframes eighth {
-  80% {
+  55% {
     text-shadow: 1px 1px 2px #d4fc79, 0 0 0em #d4fc79, 0 0 0.2em #d4fc79;
     color: #d4fc79;
-  }
-}
+  }}
 
 @keyframes underline {
   50% {

@@ -18,7 +18,7 @@ const Workspace = () => {
   return (
     <>
       <Options />
-      <CreateList />
+      {Array.isArray(list) && list.length < 4 ? <CreateList /> : ""}
       <DisplayList />
     </>
   );

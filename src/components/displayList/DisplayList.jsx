@@ -1,7 +1,7 @@
+import "./displayList.css";
 import { useContext, useState } from "react";
 import { List, Message, Task, User } from "../context/ContextData";
 import CreateTask from "../createTask/CreateTask";
-import { getData } from "../functions/getData";
 import { deleteList } from "../functions/deleteList";
 import { removeTask } from "../functions/removeTask";
 import { emptyList } from "../functions/emptyList";
@@ -15,30 +15,37 @@ const DisplayList = () => {
   const { task, setTask } = useContext(Task);
   const { message, setMessage } = useContext(Message);
   const [update, setUpdate] = useState("");
-
+  
   return (
     <>
       {list.map((listItem) => (
-        <div key={listItem._id}>
+        <div key={listItem._id} className="list-div">
           {update !== listItem._id ? (
-            <div><h2>{listItem.name}</h2>
-            <p>{listItem.description}</p></div>
-            
+            <div>
+              <h2>{listItem.name}</h2>
+              <p>{listItem.description}</p>
+            </div>
           ) : (
-            <form action="" onSubmit={(e) =>
-                          updateList(
-                            e,
-                            listItem.task,
-                            listItem._id,
-                            setUser,
-                            setList,
-                            setTask,
-                            setUpdate,
-                            setMessage
-                          )
-                        }>
+            <form
+              action=""
+              onSubmit={(e) =>
+                updateList(
+                  e,
+                  listItem.task,
+                  listItem._id,
+                  setUser,
+                  setList,
+                  setTask,
+                  setUpdate,
+                  setMessage
+                )
+              }
+            >
               <input name="name" defaultValue={listItem.name} />
-              <textarea name="description" defaultValue={listItem.description} />
+              <textarea
+                name="description"
+                defaultValue={listItem.description}
+              />
               <button type="submit">Update</button>
             </form>
           )}
@@ -49,15 +56,18 @@ const DisplayList = () => {
             className="fa-solid fa-pencil"
           ></i>
 
-          
           <button
-            onClick={(e) => deleteList(listItem._id, setUser, setList, setTask, setMessage)}
+            onClick={(e) =>
+              deleteList(listItem._id, setUser, setList, setTask, setMessage)
+            }
           >
             Delete
           </button>
           {listItem.task.length >= 1 ? (
             <button
-              onClick={() => emptyList(listItem._id, setUser, setList, setTask, setMessage)}
+              onClick={() =>
+                emptyList(listItem._id, setUser, setList, setTask, setMessage)
+              }
             >
               Empty list
             </button>
@@ -76,7 +86,14 @@ const DisplayList = () => {
                   >
                     <button
                       onClick={() =>
-                        removeTask(listItem._id, taskItem._id, setList, setTask, setMessage)
+                        removeTask(
+                          listItem._id,
+                          taskItem._id,
+                          setUser,
+                          setList,
+                          setTask,
+                          setMessage
+                        )
                       }
                     >
                       Delete
@@ -118,7 +135,13 @@ const DisplayList = () => {
                       type="checkbox"
                       defaultChecked={taskItem.done}
                       onClick={() =>
-                        checkTask(taskItem._id, setUser, setList, setTask, setMessage)
+                        checkTask(
+                          taskItem._id,
+                          setUser,
+                          setList,
+                          setTask,
+                          setMessage
+                        )
                       }
                     />
                   </li>
@@ -128,7 +151,7 @@ const DisplayList = () => {
               )}
             </ul>
           </ul>
-          <CreateTask listId={listItem._id} />
+        {Array.isArray(task) && task.length < 4 ? <CreateTask listId={listItem._id} /> : ""}
         </div>
       ))}
     </>

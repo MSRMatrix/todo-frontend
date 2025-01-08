@@ -22,7 +22,8 @@ export const updateProfile = async (e, setUser, setMessage, setUpdate, setShowPa
         }),
       });
       const data = await response.json();
-      const text = data.message;
+      const text = 
+      data?.errors?.map((item) => item.msg).join(" \n") || data.message;
 
       if (!response.ok) {
         setMessage({

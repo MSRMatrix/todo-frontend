@@ -18,6 +18,7 @@ const CreateTask = ({listId}) => {
             type="text"
             required
             name="task"
+            placeholder="New Task"
           />
           <button type="submit">Create task</button>
         </fieldset>

@@ -12,7 +12,8 @@ export const deleteList = async (listId, setUser, setList, setTask, setMessage) 
         credentials: "include",
         body: JSON.stringify({ _id: listId, password: password }),
       });
-      const data = response.json()
+      const data = await response.json()
+
       const text = data.message
       if (!response.ok) {
         setMessage({
@@ -21,14 +22,16 @@ export const deleteList = async (listId, setUser, setList, setTask, setMessage) 
       });
         return console.log("List could not be deleted!");
       } else {
-        getData(setUser, setList, setTask);
         setMessage({
           topic: text,
           show: true,
         });
+        getData(setUser, setList, setTask);
+        
         return console.log("List deleted!");
       }
     } catch (error) {
       console.log(error);
     }
   };
+  

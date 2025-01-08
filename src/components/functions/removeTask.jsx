@@ -18,8 +18,9 @@ export const removeTask = async (
       credentials: "include",
       body: JSON.stringify({ listId: listId, _id: _id }),
     });
-    const data = response.json();
+    const data = await response.json();
     const text = data.message;
+    
     if (!response.ok) {
       setMessage({
         topic: text,

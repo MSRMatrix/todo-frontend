@@ -1,0 +1,21 @@
+input, textarea {
+    padding: 6px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 10px;
+    background-color: gray;
+    color: white;
+    outline: none;
+    transition: all 0.1s ease-in-out; 
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  
+    &:focus {
+      background-color: #f9f9f9;
+      border: 2px solid #ff7f50;
+      color: #333;
+    }
+  }
+  
