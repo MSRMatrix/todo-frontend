@@ -16,6 +16,7 @@ export async function verifyProfile(e, navigate, setMessage) {
       credentials: "include",
       body: JSON.stringify({
         email: formDataObject.email,
+        username: formDataObject.username,
         code: formDataObject.code,
       }),
     });
@@ -24,12 +25,16 @@ export async function verifyProfile(e, navigate, setMessage) {
     const text =
       data?.errors?.map((item) => item.msg).join(" \n") || data.message;
 
+     if (response.status === 418) {
+     return navigate("/login");
+    }   
     if (!response.ok) {
       return setMessage({
         topic: text,
         show: true,
       });
-    } else {
+    }
+   else {
       setMessage({
         topic: text,
         show: true,

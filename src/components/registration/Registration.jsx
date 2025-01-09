@@ -3,12 +3,14 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { registrationFunction } from "../functions/registrationFunction";
 import { Field, Message } from "../context/ContextData";
 import { inputFunction } from "../functions/inputFunction";
+import { disableFunction } from "../functions/disableFunction";
 
 const Registration = () => {
   const navigate = useNavigate();
   const [see, setSee] = useState(false);
   const { field, setField } = useContext(Field);
   const { message, setMessage } = useContext(Message);
+  const formName = "Registration";
 
   return (
     <>
@@ -23,9 +25,14 @@ const Registration = () => {
                 type={key === "password" && !see ? "password" : "text"}
                 name={key}
                 value={field[key].value}
-                onChange={(e)=>inputFunction(e, setField)}
-                style={{boxShadow: field[key].message.length > 1 ? "0px 0px 4px 4px red" : ""}}
-                minLength={key === "password" || key === "username" ? 8 : undefined}
+                onChange={(e) => inputFunction(e, setField)}
+                style={{
+                  boxShadow:
+                    field[key].message.length > 1 ? "0px 0px 4px 4px red" : "",
+                }}
+                minLength={
+                  key === "password" || key === "username" ? 8 : undefined
+                }
                 required
               />
               {key === "password" && (
@@ -38,7 +45,9 @@ const Registration = () => {
             </div>
           ))}
 
-          <button type="submit">Register</button>
+          <button disabled={disableFunction(field, formName)} type="submit">
+            Register
+          </button>
         </fieldset>
       </form>
       <NavLink to="/">Back</NavLink>

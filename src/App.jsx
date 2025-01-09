@@ -26,6 +26,7 @@ function App() {
     username: { value: "", message: "" },
     email: { value: "", message: "" },
     password: { value: "", message: "" },
+    code: { value: "", message: "" },
   });
   const [message, setMessage] = useState({
     topic: "",

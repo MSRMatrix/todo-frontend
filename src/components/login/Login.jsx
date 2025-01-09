@@ -1,50 +1,65 @@
 import { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { Message, User } from "../context/ContextData";
+import { Field, Message, User } from "../context/ContextData";
 import { login } from "../functions/login";
+import { disableFunction } from "../functions/disableFunction";
+import { inputFunction } from "../functions/inputFunction";
 
 const Login = () => {
   const navigate = useNavigate();
   const [see, setSee] = useState(false);
-  const [toggle, setToggle] = useState(false);
-  const {user, setUser} = useContext(User)
+  const { user, setUser } = useContext(User);
   const { message, setMessage } = useContext(Message);
+  const { field, setField } = useContext(Field);
+  const formName = "Login"; 
+  const [toggleName, setToggleName] = useState("email")
 
+
+  function emailOrUsername(e){
+    e.preventDefault()
+    if(toggleName === "username"){
+      field.username.value = ""
+     return setToggleName("email")
+    }else{
+      field.email.value = ""
+     return setToggleName("username")
+    }
+  }
+  
   return (
     <>
       <form action="" onSubmit={(e) => login(e, navigate, setUser, setMessage)}>
         <fieldset>
-          <legend>Registration</legend>
-          <p onClick={() => setToggle((prevMode) => !prevMode)}>
-            Login with {toggle ? "Email" : "Username"}
-          </p>
-          <legend>{toggle ? "Username" : "Email"}:</legend>
-          <input
-            type={toggle ? "text" : "email"}
-            name={toggle ? "username" : "email"}
-            required
-          />
+          <legend>Login</legend>
+          <button onClick={(e) => emailOrUsername(e)}>Login with {toggleName === "username" ? "Username" : "Email"}</button>
+          {[toggleName, "password"].map((key) => (
+            <div key={key}>
+              <legend>{key.charAt(0).toUpperCase() + key.slice(1)}:</legend>
+              <input
+                type={key === "password" && !see ? "password" : "text"}
+                name={key}
+                value={field[key].value}
+                onChange={(e) => inputFunction(e, setField)}
+                style={{
+                  boxShadow: field[key].message.length > 1 ? "0px 0px 4px 4px red" : "",
+                }}
+                minLength={key === "password" || key === "username" ? 8 : undefined}
+                required
+              />
+              {key === "password" && (
+                <i
+                  className={`fa-solid ${see ? "fa-eye-slash" : "fa-eye"}`}
+                  onClick={() => setSee(!see)}
+                ></i>
+              )}
 
-          <legend>Password:</legend>
-          <input
-            type={see ? "text" : "password"}
-            name="password"
-            minLength={8}
-            required
-          />
-          {!see ? (
-            <i
-              className="fa-solid fa-eye"
-              onClick={() => setSee((prevMode) => !prevMode)}
-            ></i>
-          ) : (
-            <i
-              className="fa-solid fa-eye-slash"
-              onClick={() => setSee((prevMode) => !prevMode)}
-            ></i>
-          )}
+              <p>{field[key].message}</p>
+            </div>
+          ))}
 
-          <button type="submit">Register</button>
+          <button disabled={disableFunction(field, formName)} type="submit">
+            Login
+          </button>
         </fieldset>
       </form>
 

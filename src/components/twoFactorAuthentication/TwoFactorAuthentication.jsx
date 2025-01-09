@@ -1,72 +1,73 @@
 import { useNavigate } from "react-router-dom";
-import { Message, User } from "../context/ContextData";
-import { useContext } from "react";
+import { Field, Message } from "../context/ContextData";
+import { useContext, useState } from "react";
+import { disableFunction } from "../functions/disableFunction";
+import { inputFunction } from "../functions/inputFunction";
+import { twoFactorAuthentication } from "../functions/twoFactorAuthentication";
 
 const TwoFactorAuthentication = () => {
-  const URL = import.meta.env.VITE_BACKENDURL;
-  const { user, setUser } = useContext(User);
   const { message, setMessage } = useContext(Message);
   const navigate = useNavigate();
+  const [toggleName, setToggleName] = useState("email");
+  const { field, setField } = useContext(Field);
+  const [see, setSee] = useState(false);
+  const formName = "Verify";
 
-  async function handleSubmit(e, setMessage) {
+ 
+  function emailOrUsername(e) {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const formDataObject = {};
-    formData.forEach((value, key) => {
-      formDataObject[key] = value;
-    });
-
-    try {
-      const response = await fetch(
-        `${URL}/user/test-two-factor-authentication`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify({
-            email: formDataObject.email,
-            code: formDataObject.code,
-          }),
-        }
-      );
-      const data = await response.json();
-      const text =
-      data?.errors?.map((item) => item.msg).join(" \n") || data.message;
-      if (!response.ok) {
-        
-        setMessage({
-        topic: text,
-        show: true,
-      });
-        console.log(data.message);
-        return;
-      } else {
-        setMessage({
-          topic: text,
-          show: true,
-        });
-        console.log("Profile verified!");
-        navigate("/workspace");
-      }
-    } catch (error) {
-      console.log(error);
+    if (toggleName === "username") {
+      field.username.value = "";
+      return setToggleName("email");
+    } else {
+      field.email.value = "";
+      return setToggleName("username");
     }
   }
+
   return (
     <>
-      <form action="" onSubmit={(e) => handleSubmit(e, setMessage)}>
+      <form action="" onSubmit={(e) => twoFactorAuthentication(e, setMessage, navigate)}>
         <fieldset>
           <legend>Two-factor Authentication</legend>
+          <button onClick={(e) => emailOrUsername(e)}>
+            Login with {toggleName === "username" ? "Username" : "Email"}
+          </button>
+          {[toggleName, "code"].map((key) => (
+            <div key={key}>
+              <legend>{key.charAt(0).toUpperCase() + key.slice(1)}:</legend>
+              <input
+                type={key === "password" && !see ? "password" : "text"}
+                name={key}
+                value={field[key].value}
+                onChange={(e) => inputFunction(e, setField)}
+                style={{
+                  boxShadow:
+                    field[key].message.length > 1 ? "0px 0px 4px 4px red" : "",
+                }}
+                minLength={
+                  key === "code"
+                    ? 6
+                    : undefined || key === "username"
+                    ? 8
+                    : undefined
+                }
+                required
+              />
+              {key === "password" && (
+                <i
+                  className={`fa-solid ${see ? "fa-eye-slash" : "fa-eye"}`}
+                  onClick={() => setSee(!see)}
+                ></i>
+              )}
 
-          <legend>Email:</legend>
-          <input type="email" name="email" />
+              <p>{field[key].message}</p>
+            </div>
+          ))}
 
-          <legend>Code:</legend>
-          <input type="text" name="code" />
-
-          <button type="submit">Verify</button>
+          <button disabled={disableFunction(field, formName)} type="submit">
+            Verify
+          </button>
         </fieldset>
       </form>
     </>
