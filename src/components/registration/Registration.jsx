@@ -22,6 +22,7 @@ const Registration = () => {
             <div key={key}>
               <legend>{key.charAt(0).toUpperCase() + key.slice(1)}:</legend>
               <input
+              className={field[key].message.length > 1 ? "invalid" : ""}
                 type={key === "password" && !see ? "password" : "text"}
                 name={key}
                 value={field[key].value}

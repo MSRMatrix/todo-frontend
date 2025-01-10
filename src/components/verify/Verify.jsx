@@ -36,16 +36,13 @@ const Verify = () => {
             <div key={key}>
               <legend>{key.charAt(0).toUpperCase() + key.slice(1)}:</legend>
               <input
-                type={key === "password" && !see ? "password" : "text"}
+              className={field[key].message.length > 1 ? "invalid" : ""}
+                type={key === "password" && !see ? "password" : key === "username" || key === "code" ? "text" : "email"}
                 name={key}
                 value={field[key].value}
                 onChange={(e) => inputFunction(e, setField)}
-                style={{
-                  boxShadow:
-                    field[key].message.length > 1 ? "0px 0px 4px 4px red" : "",
-                }}
                 minLength={
-                  key === "code" ? 6 : undefined || key === "username" ? 8 : undefined
+                  key === "code" ? 6 : undefined || key === toggleName ? 8 : undefined
                 }
                 required
               />

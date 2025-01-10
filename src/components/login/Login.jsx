@@ -36,7 +36,8 @@ const Login = () => {
             <div key={key}>
               <legend>{key.charAt(0).toUpperCase() + key.slice(1)}:</legend>
               <input
-                type={key === "password" && !see ? "password" : "text"}
+              className={field[key].message.length > 1 ? "invalid" : ""}
+              type={key === "password" && !see ? "password" : key === "username" ? "text" : "email"}
                 name={key}
                 value={field[key].value}
                 onChange={(e) => inputFunction(e, setField)}
