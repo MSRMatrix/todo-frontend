@@ -33,8 +33,10 @@ const Verify = () => {
                 <input
                   className={field[key].message.length > 1 ? "invalid" : ""}
                   type={
-                    (key === "password" && !see) || (key === "code" && !see)
-                      ? "password"
+                    key === "code"
+                      ? see
+                        ? "text" 
+                        : "password" 
                       : key === "username"
                       ? "text"
                       : "email"
@@ -49,6 +51,7 @@ const Verify = () => {
                       ? 8
                       : undefined
                   }
+                  placeholder={key === "code" ? "Code" : key === "username" ? "Username" : "Email"}
                   required
                 />
                 {key === "code" && (
@@ -65,7 +68,7 @@ const Verify = () => {
           <button
             disabled={disableFunction(field, formName)}
             style={{
-              backgroundColor: disableFunction(field, formName) ? "red" : "",
+              backgroundColor: disableFunction(field, formName) ? "#B56565" : "",
               cursor: disableFunction(field, formName)
                 ? " not-allowed"
                 : "pointer",

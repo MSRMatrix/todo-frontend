@@ -34,8 +34,10 @@ const Login = () => {
                 <input
                   className={field[key].message.length > 1 ? "invalid" : ""}
                   type={
-                    key === "password" && !see
-                      ? "password"
+                    key === "password"
+                      ? see
+                        ? "text" 
+                        : "password" 
                       : key === "username"
                       ? "text"
                       : "email"
@@ -46,11 +48,12 @@ const Login = () => {
                   minLength={
                     key === "password" || key === "username" ? 8 : undefined
                   }
+                  placeholder={key === "password" ? "Password" : key === "username" ? "Username" : "Email"}
                   required
                 />
                 {key === "password" && (
                   <i
-                    className={`fa-solid ${see ? "fa-eye-slash" : "fa-eye"}`}
+                    className={`fa-solid ${see ? "fa-eye" : "fa-eye-slash"}`}
                     onClick={() => setSee(!see)}
                   ></i>
                 )}
@@ -62,7 +65,7 @@ const Login = () => {
           <button
             disabled={disableFunction(field, formName)}
             style={{
-              backgroundColor: disableFunction(field, formName) ? "red" : "",
+              backgroundColor: disableFunction(field, formName) ? "#B56565" : "",
               cursor: disableFunction(field, formName)
                 ? " not-allowed"
                 : "pointer",

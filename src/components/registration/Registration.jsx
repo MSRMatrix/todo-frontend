@@ -31,6 +31,13 @@ const Registration = () => {
                   minLength={
                     key === "password" || key === "username" ? 8 : undefined
                   }
+                  placeholder={
+                    key === "password"
+                      ? "Password"
+                      : key === "username"
+                      ? "Username"
+                      : "Email"
+                  }
                   required
                 />
                 {key === "password" && (
@@ -47,7 +54,9 @@ const Registration = () => {
           <button
             disabled={disableFunction(field, formName)}
             style={{
-              backgroundColor: disableFunction(field, formName) ? "#B56565" : "",
+              backgroundColor: disableFunction(field, formName)
+                ? "#B56565"
+                : "",
               cursor: disableFunction(field, formName)
                 ? " not-allowed"
                 : "pointer",

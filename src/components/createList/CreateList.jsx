@@ -13,7 +13,7 @@ const CreateList = () => {
     <>
       <form action="" onSubmit={(e) => createList(e, setMessage, getData, setUser, setList, setTask)}>
         <fieldset>
-          <legend>Create list</legend>
+          {/* <legend>Create list</legend> */}
           <legend>List Name</legend>
           <input
             type="text"
