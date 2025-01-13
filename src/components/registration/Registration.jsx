@@ -21,32 +21,39 @@ const Registration = () => {
           {["username", "email", "password"].map((key) => (
             <div key={key}>
               <legend>{key.charAt(0).toUpperCase() + key.slice(1)}:</legend>
-              <input
-              className={field[key].message.length > 1 ? "invalid" : ""}
-                type={key === "password" && !see ? "password" : "text"}
-                name={key}
-                value={field[key].value}
-                onChange={(e) => inputFunction(e, setField)}
-                style={{
-                  boxShadow:
-                    field[key].message.length > 1 ? "0px 0px 4px 4px red" : "",
-                }}
-                minLength={
-                  key === "password" || key === "username" ? 8 : undefined
-                }
-                required
-              />
-              {key === "password" && (
-                <i
-                  className={`fa-solid ${see ? "fa-eye-slash" : "fa-eye"}`}
-                  onClick={() => setSee(!see)}
-                ></i>
-              )}
+              <div className={key === "password" ? "eye-div" : ""}>
+                <input
+                  className={field[key].message.length > 1 ? "invalid" : ""}
+                  type={key === "password" && !see ? "password" : "text"}
+                  name={key}
+                  value={field[key].value}
+                  onChange={(e) => inputFunction(e, setField)}
+                  minLength={
+                    key === "password" || key === "username" ? 8 : undefined
+                  }
+                  required
+                />
+                {key === "password" && (
+                  <i
+                    className={`fa-solid ${see ? "fa-eye" : "fa-eye-slash"}`}
+                    onClick={() => setSee(!see)}
+                  ></i>
+                )}
+              </div>
               <p>{field[key].message}</p>
             </div>
           ))}
 
-          <button disabled={disableFunction(field, formName)} type="submit">
+          <button
+            disabled={disableFunction(field, formName)}
+            style={{
+              backgroundColor: disableFunction(field, formName) ? "#B56565" : "",
+              cursor: disableFunction(field, formName)
+                ? " not-allowed"
+                : "pointer",
+            }}
+            type="submit"
+          >
             Register
           </button>
         </fieldset>

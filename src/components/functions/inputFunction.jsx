@@ -2,9 +2,9 @@ export const inputFunction = (e, setField) => {
     const { name, value } = e.target;
   
     const validations = {
-      username: value.length < 8 ? "Username should have at least 8 letters" : "",
+      username: value.length < 8? "Username should have at least 8 letters" : "",
       email: !value.includes("@") ? "Email requires @" : "",
-      code: value.length < 6 ? "Every code have 6 at least numbers" : "",
+      code: value.length < 6 ? "Every code have at least 6 symbols" : "",
       password: (() => {
         const errors = [];
         if (value.length < 8) errors.push("at least 8 letters");

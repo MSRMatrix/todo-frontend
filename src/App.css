@@ -1,3 +1,9 @@
+form{
+  button{
+    margin-top: 10px;
+  }
+}
+
 input,
 textarea {
   padding: 10px 14px;
@@ -22,15 +28,8 @@ textarea {
 }
 
 input.invalid {
-  box-shadow: 0 0 8px rgba(255, 0, 0, 0.7); 
-  background-color: #ffe6e6; 
+  background-color: #B56565; 
   transition: all 0.3s ease-in-out; 
-
-  &:focus{
-    outline: none;
-  box-shadow: 0 0 12px rgba(255, 0, 0, 0.9); 
-  background-color: #ffcccc;
-  }
 }
 
 button {
@@ -61,3 +60,32 @@ fieldset {
   border-radius: 10px;
 }
 
+.fa-eye, .fa-eye-slash{
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: larger;
+  transition: 0.2s ease-in-out;
+}
+
+.fa-eye:hover, .fa-eye-slash:hover{
+  color: #ff9900;
+  text-shadow: 0px 0px 12px #feb47b, 0 0 0em #feb47b, 0 0 0.2em #feb47b;
+}
+
+.eye-div{
+  display: flex;
+  align-items: center;
+}
+
+a{
+  color: #ffffff;
+  text-decoration: none;
+  transition: 0.1s all ease-in-out;
+  &:hover{
+    color: #ff9900;
+  }
+
+  &:active{
+    color: #a76502;
+  }
+}
