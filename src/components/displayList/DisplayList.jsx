@@ -8,6 +8,7 @@ import { emptyList } from "../functions/emptyList";
 import { checkTask } from "../functions/checkTask";
 import { updateTask } from "../functions/updateTask";
 import { updateList } from "../functions/updateList";
+import { toggleAllTasks } from "../functions/toggleAllTasks";
 
 const DisplayList = () => {
   const { user, setUser } = useContext(User);
@@ -15,7 +16,29 @@ const DisplayList = () => {
   const { task, setTask } = useContext(Task);
   const { message, setMessage } = useContext(Message);
   const [update, setUpdate] = useState("");
-  
+
+  function taskLength(listItem) {
+    try {
+      const taskObjects = task.filter((test) =>
+        listItem.task.includes(test._id)
+      );
+      return taskObjects.length;
+    } catch (error) {
+      return;
+    }
+  }
+
+  function taskComplete(listItem) {
+    try {
+      const taskObjects = task.filter((test) =>
+        listItem.task.includes(test._id)
+      );
+      return taskObjects.filter((test) => test.done).length;
+    } catch (error) {
+      return;
+    }
+  }
+
   return (
     <>
       {list.map((listItem) => (
@@ -24,6 +47,9 @@ const DisplayList = () => {
             <div>
               <h2>{listItem.name}</h2>
               <p>{listItem.description}</p>
+              <p>
+                Tasks completed: {taskComplete(listItem)}/{taskLength(listItem)}
+              </p>
             </div>
           ) : (
             <form
@@ -55,7 +81,13 @@ const DisplayList = () => {
             }
             className="fa-solid fa-pencil"
           ></i>
-
+          <button
+            onClick={() =>
+              toggleAllTasks(listItem, setUser, setList, setTask, setMessage)
+            }
+          >
+            Check Buttons
+          </button>
           <button
             onClick={(e) =>
               deleteList(listItem._id, setUser, setList, setTask, setMessage)
@@ -78,30 +110,20 @@ const DisplayList = () => {
             <ul>
               {task.map((taskItem) =>
                 taskItem.listId === listItem._id ? (
-                  <li
-                    key={taskItem._id}
-                    style={{
-                      textDecoration: taskItem.done ? "line-through" : "",
-                    }}
-                  >
-                    <button
-                      onClick={() =>
-                        removeTask(
-                          listItem._id,
-                          taskItem._id,
-                          setUser,
-                          setList,
-                          setTask,
-                          setMessage
-                        )
-                      }
-                    >
-                      Delete
-                    </button>
+                  <div className="list" key={taskItem._id}>
                     {update !== taskItem._id ? (
-                      <p>{taskItem.task}</p>
+                      <li
+                        className="task"
+                        key={taskItem._id}
+                        style={{
+                          textDecoration: taskItem.done ? "line-through" : "",
+                        }}
+                      >
+                        {taskItem.task}
+                      </li>
                     ) : (
                       <form
+                        className="task"
                         action=""
                         onSubmit={(e) =>
                           updateTask(
@@ -120,38 +142,63 @@ const DisplayList = () => {
                         <button type="submit">Update</button>
                       </form>
                     )}
-                    {!taskItem.done ? (
-                      <i
+                    <div className="task-option">
+                      <button
                         onClick={() =>
-                          setUpdate(update === taskItem._id ? "" : taskItem._id)
+                          removeTask(
+                            listItem._id,
+                            taskItem._id,
+                            setUser,
+                            setList,
+                            setTask,
+                            setMessage
+                          )
                         }
-                        className="fa-solid fa-pencil"
+                      >
+                        Delete
+                      </button>
+                      {!taskItem.done ? (
+                        <i
+                          onClick={() =>
+                            setUpdate(
+                              update === taskItem._id ? "" : taskItem._id
+                            )
+                          }
+                          className={`fa-solid fa-pencil${
+                            update ? " pencil-update" : " pencil-done"
+                          }`}
+                        ></i>
+                      ) : (
+                        ""
+                      )}
+                      <i
+                      style={{cursor: "pointer"}}
+                        onClick={() =>
+                          checkTask(
+                            taskItem._id,
+                            setUser,
+                            setList,
+                            setTask,
+                            setMessage
+                          )
+                        }
+                        className={`fa-solid fa-square-${
+                          taskItem.done ? "check" : "xmark"
+                        }`}
                       ></i>
-                    ) : (
-                      ""
-                    )}
-
-                    <input
-                      type="checkbox"
-                      defaultChecked={taskItem.done}
-                      onClick={() =>
-                        checkTask(
-                          taskItem._id,
-                          setUser,
-                          setList,
-                          setTask,
-                          setMessage
-                        )
-                      }
-                    />
-                  </li>
+                    </div>
+                  </div>
                 ) : (
                   ""
                 )
               )}
             </ul>
           </ul>
-        {Array.isArray(task) && task.length < 4 ? <CreateTask listId={listItem._id} /> : ""}
+          {taskLength(listItem) < 4 ? (
+            <CreateTask listId={listItem._id} />
+          ) : (
+            ""
+          )}
         </div>
       ))}
     </>
