@@ -1,32 +1,40 @@
-.list{
+.list {
+  display: flex;
+  .task-option {
     display: flex;
+    gap: 30px;
+    align-items: center;
+    i {
+      font-size: 30px;
+    }
+  }
 }
 
-.task{
-    background-color: #feb47b;
-    min-width: 400px;
-    padding: 10px;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+.task {
+  background-color: #98ff98;
+  color: aliceblue;
+  min-width: 400px;
+  padding: 10px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
 
-.fa-square-check{
-    color: green;
+.fa-square-check,
+.fa-check,
+.pencil-done {
+  color: rgb(0, 255, 0);
 }
 
-.fa-square-xmark{
-    color: red;
+.fa-square-xmark,
+.pencil-update {
+  color: red;
 }
 
-.fa-pencil{
-    cursor: pointer;
-}
-
-.pencil-done{
-    color: green;
-}
-
-.pencil-update{
-    color: red;
+.fa-pencil {
+  cursor: pointer;
 }

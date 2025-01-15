@@ -14,12 +14,12 @@ const Options = () => {
     const { message, setMessage } = useContext(Message);
     
   return (
-    <div className="nav-link">
-    <li onClick={() => navigate("/profile")}>Profile options</li>
+      <ul className="nav-link">
+      <li onClick={() => navigate("/profile")}>Profile options</li>
     <li onClick={() => resetData(setUser, setList, setTask, setMessage)}>Reset your List</li>
     <li onClick={() => logout(navigate, setMessage)}>Logout</li>
-    <li style={{color: "gray"}}>Chat with others</li>
-    </div>
+    <li style={{color: "gray"}}>Chat with others</li>  
+      </ul>
   );
 }
 

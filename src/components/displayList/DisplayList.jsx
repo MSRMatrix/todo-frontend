@@ -38,7 +38,7 @@ const DisplayList = () => {
       return;
     }
   }
-
+  
   return (
     <>
       {list.map((listItem) => (
@@ -48,7 +48,7 @@ const DisplayList = () => {
               <h2>{listItem.name}</h2>
               <p>{listItem.description}</p>
               <p>
-                Tasks completed: {taskComplete(listItem)}/{taskLength(listItem)}
+                Tasks completed: {taskComplete(listItem)}/{taskLength(listItem)} {taskComplete(listItem) === taskLength(listItem) && taskLength(listItem) > 0 ? <i className="fa-solid fa-check"></i> : ""}
               </p>
             </div>
           ) : (
@@ -79,7 +79,9 @@ const DisplayList = () => {
             onClick={() =>
               setUpdate(update === listItem._id ? "" : listItem._id)
             }
-            className="fa-solid fa-pencil"
+            className={`fa-solid fa-pencil${
+              update === listItem._id ? " pencil-update" : " pencil-done"
+            }`}
           ></i>
           <button
             onClick={() =>
@@ -165,7 +167,7 @@ const DisplayList = () => {
                             )
                           }
                           className={`fa-solid fa-pencil${
-                            update ? " pencil-update" : " pencil-done"
+                            update === taskItem._id ? " pencil-update" : " pencil-done"
                           }`}
                         ></i>
                       ) : (

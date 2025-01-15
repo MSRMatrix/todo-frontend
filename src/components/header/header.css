@@ -1,20 +1,18 @@
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100vw;
   h1 {
+    margin: 0 auto;
     font-weight: bolder;
-    background-image: linear-gradient(to right, #ff7e5f, #feb47b);
+    background-image: linear-gradient(to right, #ff7e5f, #a8e4a0);
     -webkit-background-clip: text;
     color: transparent;
-    text-shadow: 1px 1px 2px #feb47b, 0 0 0em #feb47b, 0 0 0.2em #feb47b;
+    text-shadow: 1px 1px 2px #a8e4a0, 0 0 0em #a8e4a0, 0 0 0.2em #a8e4a0;
     position: relative;
-    width: 111px;
-
+    width: 208px;
     &::after {
       content: "";
-      background-color: #feb47b;
-      box-shadow: 1px 1px 2px #feb47b, 0 0 0em #feb47b, 0 0 0.2em #feb47b;
+      background-color: #a8e4a0;
+      box-shadow: 1px 1px 2px #a8e4a0, 0 0 0em #a8e4a0, 0 0 0.2em #a8e4a0;
       position: absolute;
       left: 0;
       right: 0;
@@ -32,6 +30,7 @@
       animation-duration: 2s;
       animation-iteration-count: infinite;
       animation-timing-function: ease-in-out;
+      font-size: 60px;
 
       &:nth-child(2) {
         animation-name: second;
@@ -50,34 +49,35 @@
 }
 @keyframes second {
   10% {
-    text-shadow: 1px 1px 2px #d4fc79, 0 0 0em #d4fc79, 0 0 0.2em #d4fc79;
-    color: #d4fc79;
+    text-shadow: 1px 1px 2px #00ff7f, 0 0 0em #00ff7f, 0 0 0.2em #00ff7f;
+    color: #00ff7f;
   }
 }
 
 @keyframes fourth {
   30% {
-    text-shadow: 1px 1px 2px #d4fc79, 0 0 0em #d4fc79, 0 0 0.2em #d4fc79;
-    color: #d4fc79;
+    text-shadow: 1px 1px 2px #00ff7f, 0 0 0em #00ff7f, 0 0 0.2em #00ff7f;
+    color: #00ff7f;
   }
 }
 
 @keyframes sixth {
   50% {
-    text-shadow: 1px 1px 2px #d4fc79, 0 0 0em #d4fc79, 0 0 0.2em #d4fc79;
-    color: #d4fc79;
+    text-shadow: 1px 1px 2px #00ff7f, 0 0 0em #00ff7f, 0 0 0.2em #00ff7f;
+    color: #00ff7f;
   }
 }
 
 @keyframes eighth {
   55% {
-    text-shadow: 1px 1px 2px #d4fc79, 0 0 0em #d4fc79, 0 0 0.2em #d4fc79;
-    color: #d4fc79;
-  }}
+    text-shadow: 1px 1px 2px #00ff7f, 0 0 0em #00ff7f, 0 0 0.2em #00ff7f;
+    color: #00ff7f;
+  }
+}
 
 @keyframes underline {
   50% {
-    box-shadow: 1px 1px 2px #d4fc79, 0 0 0em #d4fc79, 0 0 0.2em #d4fc79;
-    background-color: #d4fc79;
+    box-shadow: 1px 1px 2px #00ff7f, 0 0 0em #00ff7f, 0 0 0.2em #00ff7f;
+    background-color: #00ff7f;
   }
 }

@@ -65,7 +65,7 @@ const Login = () => {
           <button
             disabled={disableFunction(field, formName)}
             style={{
-              backgroundColor: disableFunction(field, formName) ? "#B56565" : "",
+              backgroundColor: disableFunction(field, formName) ? "#B56565" : "#00ff7f",
               cursor: disableFunction(field, formName)
                 ? " not-allowed"
                 : "pointer",
