@@ -9,6 +9,8 @@ import { checkTask } from "../functions/checkTask";
 import { updateTask } from "../functions/updateTask";
 import { updateList } from "../functions/updateList";
 import { toggleAllTasks } from "../functions/toggleAllTasks";
+import CheckedList from "./list/CheckedList";
+import UnCheckedList from "./list/UnCheckedList";
 
 const DisplayList = () => {
   const { user, setUser } = useContext(User);
@@ -42,7 +44,7 @@ const DisplayList = () => {
   return (
     <>
       {list.map((listItem) => (
-        <div key={listItem._id} className="list-div">
+        <div key={listItem._id} className="top-div">
           {update !== listItem._id ? (
             <div>
               <h2>{listItem.name}</h2>
@@ -114,99 +116,14 @@ const DisplayList = () => {
           ) : (
             ""
           )}
-          <ul style={{width: "50%"}}>
+          <ul className="task-div">
             <ul className="filter-tasks">
-            <li>All Tasks</li>
+            <li>Unfinished Tasks</li>    
             <li>Finished Tasks</li>
-            <li>Unfinished Tasks</li>  
             </ul>
-            <ul>
-              {task.map((taskItem) =>
-                taskItem.listId === listItem._id ? (
-                  <div className="list" key={taskItem._id}>
-                    {update !== taskItem._id ? (
-                      <li
-                        className="task"
-                        key={taskItem._id}
-                        style={{
-                          textDecoration: taskItem.done ? "line-through" : "",
-                        }}
-                      >
-                        {taskItem.task}
-                      </li>
-                    ) : (
-                      <form
-                        className="task"
-                        action=""
-                        onSubmit={(e) =>
-                          updateTask(
-                            e,
-                            taskItem.task,
-                            taskItem._id,
-                            setUser,
-                            setList,
-                            setTask,
-                            setUpdate,
-                            setMessage
-                          )
-                        }
-                      >
-                        <input defaultValue={taskItem.task} />
-                        <button type="submit">Update</button>
-                      </form>
-                    )}
-                    <div className="task-option">
-                      <button
-                        onClick={() =>
-                          removeTask(
-                            listItem._id,
-                            taskItem._id,
-                            setUser,
-                            setList,
-                            setTask,
-                            setMessage
-                          )
-                        }
-                      >
-                        Delete
-                      </button>
-                      {!taskItem.done ? (
-                        <i
-                          onClick={() =>
-                            setUpdate(
-                              update === taskItem._id ? "" : taskItem._id
-                            )
-                          }
-                          className={`fa-solid fa-pencil${
-                            update === taskItem._id
-                              ? " pencil-update"
-                              : " pencil-done"
-                          }`}
-                        ></i>
-                      ) : (
-                        ""
-                      )}
-                      <i
-                        style={{ cursor: "pointer" }}
-                        onClick={() =>
-                          checkTask(
-                            taskItem._id,
-                            setUser,
-                            setList,
-                            setTask,
-                            setMessage
-                          )
-                        }
-                        className={`fa-solid fa-square-${
-                          taskItem.done ? "check" : "xmark"
-                        }`}
-                      ></i>
-                    </div>
-                  </div>
-                ) : (
-                  ""
-                )
-              )}
+            <ul className="lists">
+              <div className="checked-task"><CheckedList listItem={listItem}/></div>
+              <div className="unchecked-task"><UnCheckedList listItem={listItem}/></div>
             </ul>
           </ul>
           {taskLength(listItem) < 4 ? <CreateTask listId={listItem._id} /> : ""}
