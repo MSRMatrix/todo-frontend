@@ -1,64 +1,112 @@
 .top-div {
-  margin: 0 auto;
+  margin: 20px auto;
   width: 80vw;
-  background-color: black;
-  .filter-tasks {
-    display: flex;
-    justify-content: space-around;
-    background-color: purple;
-    li {
-      list-style-type: none;
-    }
-  }
+  background-color: #1e1e2f; 
+  border-radius: 8px;
+  padding: 20px;
+  color: #f5f5f5; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
-.lists{
+.filter-tasks {
+  display: flex;
+  justify-content: space-around;
+  background-color: #4a148c; 
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 20px;
+
+  li {
+  list-style-type: none;
+  color: #ffffff; 
+  font-weight: bold;
+}
+}
+
+.lists {
   display: grid;
-  grid-template-columns: 2fr 2fr;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 
-  li{
-    list-style-type: none;
-  }
+  li {
+  list-style-type: none;
+}
+}
 
-  .checked-task, .unchecked-task{
-    width: 100%;
-  }
-
+.checked-task,
+.unchecked-task {
+  width: 100%;
+  background-color: #2c2c3a; 
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .fa-square-check,
 .fa-check,
 .pencil-done {
-  color: rgb(0, 255, 0);
+  color: #4caf50; 
 }
 
 .fa-square-xmark,
 .pencil-update {
-  color: red;
+  color: #f44336;
+}
+
+.fa-pencil,
+.fa-trash {
+  cursor: pointer;
 }
 
 .fa-pencil {
-  cursor: pointer;
+  color: #03a9f4; 
 }
 
-.task{
-  word-break: break-all;
-  border: white solid 2px;
-  padding: 10px;
+.fa-trash {
+  color: #d84315;
 }
 
-.list{
+.task {
+  word-break: break-word;
+  border: 2px solid #3a3a4a; 
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #2e2e3e;
+  color: #e0e0e0;
+}
+
+.list {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #21212e; 
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
-.fa-trash{
-  cursor: pointer;
-  color: brown;
-}
-
-.task-option{
+.task-option {
   display: flex;
-  gap: 20px;
+  gap: 15px;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.top-div:hover {
+  background-color: #29293d; 
+}
+
+.task:hover {
+  background-color: #3a3a4f;
+  border-color: #4caf50; 
+}
+
+.task-option button:hover,
+.fa-pencil:hover,
+.fa-trash:hover {
+  transform: scale(1.1); 
+}
+
+@media (max-width: 670px){
+  *{font-size: 50%;}
 }
