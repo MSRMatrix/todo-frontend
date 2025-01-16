@@ -1,11 +1,11 @@
 .startpage {
-  color: #f5f5f5;  /* Helles Textfarbe für Kontrast */
+  color: #f5f5f5; 
   text-align: center;
   padding: 30px;
   max-width: 90%;
   margin: auto;
   transition: box-shadow 0.3s ease;
-  background: linear-gradient(135deg, #2c3e50, #34495e); /* Dunkles Blau-Grau für einen modernen Look */
+  background: linear-gradient(135deg, #2c3e50, #34495e); 
 
   ul {
     list-style-type: none;
@@ -25,11 +25,10 @@
       padding: 10px;
       border-radius: 8px;
       transition: 0.2s all ease-in-out;
-      background-color: #1a232f; /* Dunkles, fast schwarzes Hintergrund für jedes Listenelement */
-      border: 2px solid #34495e;  /* Ein sanftes Blau-Grau für den Rand */
-      color: #f5f5f5;  /* Textfarbe Weiß für besseren Kontrast */
+      background-color: #1a232f; 
+      border: 2px solid #34495e;  
+      color: #f5f5f5;  
       
-      /* Hover-Effekt für Akzentuierung */
       &:hover {
         box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
           rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
@@ -37,17 +36,16 @@
           rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px,
           rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px,
           rgba(0, 0, 0, 0.09) 0px 32px 16px;
-        color: #00ff7f; /* Leuchtendes Grün für den Hover-Effekt */
-        background-color: #1c2833; /* Etwas dunkler für den aktiven Zustand */
-        border-color: #00ff7f;  /* Helle Randfarbe bei Hover */
+        color: #00ff7f; 
+        background-color: #1c2833; 
+        border-color: #00ff7f; 
       }
 
-      /* Active-Zustand mit weiteren Schattierungen */
       &:active {
         box-shadow: inset 4px 4px 4px 4px rgba(0, 0, 0, 0.5),
         inset -4px -4px 4px 4px rgba(255, 255, 255, 0.5);
-        background-color: #34495e;  /* Ein neutraler Dunkelton für den aktiven Zustand */
-        color: #f5f5f5;  /* Weiß bleibt als Textfarbe */
+        background-color: #34495e; 
+        color: #f5f5f5;  
       }
     }
   }

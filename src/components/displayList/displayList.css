@@ -1,6 +1,6 @@
 .top-div {
   margin: 20px auto;
-  width: 80vw;
+  width: 95vw;
   background-color: #1e1e2f; 
   border-radius: 8px;
   padding: 20px;
@@ -108,5 +108,5 @@
 }
 
 @media (max-width: 670px){
-  *{font-size: 50%;}
+  *{font-size: 95%;}
 }
