@@ -38,7 +38,7 @@ const DisplayList = () => {
       return;
     }
   }
-  
+
   return (
     <>
       {list.map((listItem) => (
@@ -48,7 +48,13 @@ const DisplayList = () => {
               <h2>{listItem.name}</h2>
               <p>{listItem.description}</p>
               <p>
-                Tasks completed: {taskComplete(listItem)}/{taskLength(listItem)} {taskComplete(listItem) === taskLength(listItem) && taskLength(listItem) > 0 ? <i className="fa-solid fa-check"></i> : ""}
+                Tasks completed: {taskComplete(listItem)}/{taskLength(listItem)}{" "}
+                {taskComplete(listItem) === taskLength(listItem) &&
+                taskLength(listItem) > 0 ? (
+                  <i className="fa-solid fa-check"></i>
+                ) : (
+                  ""
+                )}
               </p>
             </div>
           ) : (
@@ -108,7 +114,12 @@ const DisplayList = () => {
           ) : (
             ""
           )}
-          <ul>
+          <ul style={{width: "50%"}}>
+            <ul className="filter-tasks">
+            <li>All Tasks</li>
+            <li>Finished Tasks</li>
+            <li>Unfinished Tasks</li>  
+            </ul>
             <ul>
               {task.map((taskItem) =>
                 taskItem.listId === listItem._id ? (
@@ -167,14 +178,16 @@ const DisplayList = () => {
                             )
                           }
                           className={`fa-solid fa-pencil${
-                            update === taskItem._id ? " pencil-update" : " pencil-done"
+                            update === taskItem._id
+                              ? " pencil-update"
+                              : " pencil-done"
                           }`}
                         ></i>
                       ) : (
                         ""
                       )}
                       <i
-                      style={{cursor: "pointer"}}
+                        style={{ cursor: "pointer" }}
                         onClick={() =>
                           checkTask(
                             taskItem._id,
@@ -196,11 +209,7 @@ const DisplayList = () => {
               )}
             </ul>
           </ul>
-          {taskLength(listItem) < 4 ? (
-            <CreateTask listId={listItem._id} />
-          ) : (
-            ""
-          )}
+          {taskLength(listItem) < 4 ? <CreateTask listId={listItem._id} /> : ""}
         </div>
       ))}
     </>

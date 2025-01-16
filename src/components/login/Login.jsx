@@ -64,12 +64,7 @@ const Login = () => {
 
           <button
             disabled={disableFunction(field, formName)}
-            style={{
-              backgroundColor: disableFunction(field, formName) ? "#B56565" : "#00ff7f",
-              cursor: disableFunction(field, formName)
-                ? " not-allowed"
-                : "pointer",
-            }}
+            className={disableFunction(field, formName) ? "disable-button" : "enable-button"}
             type="submit"
           >
             Login
@@ -77,7 +72,7 @@ const Login = () => {
         </fieldset>
       </form>
 
-      <NavLink to="/">Back</NavLink>
+      <NavLink to="/"><i className="fa-solid fa-arrow-left-long"></i>Back</NavLink>
     </>
   );
 };

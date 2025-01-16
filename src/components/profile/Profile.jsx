@@ -105,7 +105,7 @@ const Profile = () => {
             : "Activate Two Factor Authentication"}
         </button>
       </div>
-      <NavLink to="/workspace">Back</NavLink>
+      <NavLink to="/workspace"><i className="fa-solid fa-arrow-left-long"></i>Back</NavLink>
     </>
   );
 };

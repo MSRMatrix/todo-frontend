@@ -77,15 +77,39 @@ fieldset {
   align-items: center;
 }
 
-a{
+a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
   color: #ffffff;
+  background-color: #4caf50; 
+  border: none;
+  border-radius: 25px;
   text-decoration: none;
-  transition: 0.1s all ease-in-out;
-  &:hover{
-    color: #ff9900;
-  }
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
 
-  &:active{
-    color: #a76502;
-  }
+a i {
+  font-size: 18px;
+  transition: transform 0.3s ease-in-out;
+}
+
+a:hover {
+  background-color: #45a049; 
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px); 
+}
+
+a:hover i {
+  transform: translateX(-5px); 
+}
+
+a:active {
+  background-color: #388e3c; 
+  transform: translateY(1px); 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }

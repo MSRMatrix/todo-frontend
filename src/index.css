@@ -7,7 +7,7 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  font-size: 25px;
+  font-size: 16px;
 }
 
 html {
@@ -18,5 +18,7 @@ html {
   overflow-x: hidden;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  display: flex;
+  justify-content: center;
   width: fit-content;
 }

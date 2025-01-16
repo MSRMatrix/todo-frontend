@@ -52,22 +52,15 @@ const Registration = () => {
           ))}
 
           <button
+          className={disableFunction(field, formName) ? "disable-button" : "enable-button"}
             disabled={disableFunction(field, formName)}
-            style={{
-              backgroundColor: disableFunction(field, formName)
-                ? "#B56565"
-                : "",
-              cursor: disableFunction(field, formName)
-                ? " not-allowed"
-                : "pointer",
-            }}
             type="submit"
           >
             Register
           </button>
         </fieldset>
       </form>
-      <NavLink to="/">Back</NavLink>
+      <NavLink to="/"><i className="fa-solid fa-arrow-left-long"></i>Back</NavLink>
     </>
   );
 };
