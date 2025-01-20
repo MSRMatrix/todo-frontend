@@ -11,6 +11,7 @@ import { updateList } from "../functions/updateList";
 import { toggleAllTasks } from "../functions/toggleAllTasks";
 import CheckedList from "./list/CheckedList";
 import UnCheckedList from "./list/UnCheckedList";
+import ListComponent from "./list/CheckedList";
 
 const DisplayList = () => {
   const { user, setUser } = useContext(User);
@@ -49,15 +50,7 @@ const DisplayList = () => {
             <div>
               <h2>{listItem.name}</h2>
               <p>{listItem.description}</p>
-              <p>
-                Tasks completed: {taskComplete(listItem)}/{taskLength(listItem)}{" "}
-                {taskComplete(listItem) === taskLength(listItem) &&
-                taskLength(listItem) > 0 ? (
-                  <i className="fa-solid fa-check"></i>
-                ) : (
-                  ""
-                )}
-              </p>
+              
             </div>
           ) : (
             <form
@@ -90,7 +83,9 @@ const DisplayList = () => {
             className={`fa-solid fa-pencil${
               update === listItem._id ? " pencil-update" : " pencil-done"
             }`}
-          ></i>
+          ></i><i className="fa-solid fa-trash" onClick={(e) =>
+              deleteList(listItem._id, setUser, setList, setTask, setMessage)
+            }></i>
           <button
             onClick={() =>
               toggleAllTasks(listItem, setUser, setList, setTask, setMessage)
@@ -98,13 +93,7 @@ const DisplayList = () => {
           >
             Check Buttons
           </button>
-          <button
-            onClick={(e) =>
-              deleteList(listItem._id, setUser, setList, setTask, setMessage)
-            }
-          >
-            Delete
-          </button>
+          
           {listItem.task.length >= 1 ? (
             <button
               onClick={() =>
@@ -117,13 +106,22 @@ const DisplayList = () => {
             ""
           )}
           <ul className="task-div">
-            <ul className="filter-tasks">
+            {/* <ul className="filter-tasks">
             <li>Unfinished Tasks</li>    
             <li>Finished Tasks</li>
-            </ul>
+            </ul> */}
+            <h2>
+                Tasks completed: {taskComplete(listItem)}/{taskLength(listItem)}{" "}
+                {taskComplete(listItem) === taskLength(listItem) &&
+                taskLength(listItem) > 0 ? (
+                  <i className="fa-solid fa-check"></i>
+                ) : (
+                  ""
+                )}
+              </h2>
             <ul className="lists">
-              <div className="checked-task"><CheckedList listItem={listItem}/></div>
-              <div className="unchecked-task"><UnCheckedList listItem={listItem}/></div>
+              <div className="task-div"><ListComponent listItem={listItem}/></div>
+              {/* <div className="unchecked-task"><UnCheckedList listItem={listItem}/></div> */}
             </ul>
           </ul>
           {taskLength(listItem) < 4 ? <CreateTask listId={listItem._id} /> : ""}

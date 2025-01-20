@@ -20,7 +20,7 @@ const CreateTask = ({listId}) => {
             name="task"
             placeholder="New Task"
           />
-          <button type="submit">Create task</button>
+          <button type="submit"><i className="fa-solid fa-plus"></i></button>
         </fieldset>
       </form>
     </>
