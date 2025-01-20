@@ -14,10 +14,6 @@ export const updateTask = async (
   const URL = import.meta.env.VITE_BACKENDURL;
   const newTask = e.target.elements[0].value.trim();
 
-  if (newTask === oldTask) {
-    return console.log(`Name is equal!`);
-  }
-
   try {
     const response = await fetch(`${URL}/task/update`, {
       method: "PATCH",

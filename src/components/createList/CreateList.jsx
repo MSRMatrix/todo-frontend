@@ -1,3 +1,4 @@
+import "./createList.css"
 import { useContext } from "react";
 import { getData } from "../functions/getData";
 import { List, Message, Task, User } from "../context/ContextData";
@@ -11,9 +12,15 @@ const CreateList = () => {
 
   return (
     <>
-      <form action="" onSubmit={(e) => createList(e, setMessage, getData, setUser, setList, setTask)}>
+      <form
+        className="create-list-form"
+        action=""
+        onSubmit={(e) =>
+          createList(e, setMessage, getData, setUser, setList, setTask)
+        }
+      >
+        <h1>Create list</h1>
         <fieldset>
-          {/* <legend>Create list</legend> */}
           <legend>List Name</legend>
           <input
             type="text"

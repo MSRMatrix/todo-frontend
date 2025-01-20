@@ -1,7 +1,3 @@
-.list-container{
-    display: flex;
-}
-
 .disable-button{
     cursor: not-allowed;
     box-shadow: none;

@@ -32,6 +32,10 @@ input.invalid {
   transition: all 0.3s ease-in-out; 
 }
 
+i{
+  cursor: pointer;
+}
+
 button {
   border-radius: 10px;
   padding: 10px 14px;
