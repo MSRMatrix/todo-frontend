@@ -1,7 +1,13 @@
 export const toggleTwoFactorAuthentication = async (setMessage, setAuthentication) => {
     const URL = import.meta.env.VITE_BACKENDURL;
     const password = prompt("Please type in your password: ");
-    if (!password) return alert("Password is required to toggle 2FA!");
+    if(password === null){
+      console.log("Two factor authentication not changed!")
+    return setMessage({
+       topic: "Two factor authentication not changed!",
+       show: true,
+     });
+   }
 
     try {
       const response = await fetch(

@@ -1,6 +1,14 @@
 export async function deleteUser(setMessage, navigate) {
     const URL = import.meta.env.VITE_BACKENDURL;
     const password = prompt("Please type in your password: ");
+
+    if(password === null){
+      console.log("User not deleted!")
+    return setMessage({
+       topic: "User not deleted!",
+       show: true,
+     });
+   }
     try {
       const response = await fetch(`${URL}/user`, {
         method: "DELETE",

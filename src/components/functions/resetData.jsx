@@ -3,6 +3,15 @@ import { getData } from "./getData";
 export const resetData = async (setUser, setList, setTask, setMessage) => {
   const password = prompt("Type in your password: ");
   const URL = import.meta.env.VITE_BACKENDURL;
+
+  if(password === null){
+    console.log("Data not deleted!")
+  return setMessage({
+     topic: "Data not deleted!",
+     show: true,
+   });
+ }
+ 
   try {
     const response = await fetch(`${URL}/list/reset-data`, {
       method: "DELETE",

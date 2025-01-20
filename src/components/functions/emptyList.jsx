@@ -9,6 +9,14 @@ export const emptyList = async (
 ) => {
   const URL = import.meta.env.VITE_BACKENDURL;
   const password = prompt("Enter your password: ");
+
+  if(password === null){
+    console.log("List not cleared!")
+  return setMessage({
+     topic: "List not cleared!",
+     show: true,
+   });
+ }
   try {
     const response = await fetch(`${URL}/list/empty-list`, {
       method: "DELETE",
