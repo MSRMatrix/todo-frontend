@@ -13,7 +13,7 @@ const CreateList = () => {
   return (
     <>
       <form
-        className="create-list-form"
+        className="create-form"
         action=""
         onSubmit={(e) =>
           createList(e, setMessage, getData, setUser, setList, setTask)

@@ -11,7 +11,7 @@ const CreateTask = ({listId}) => {
 
   return (
     <>
-      <form action="" onSubmit={(e) => createTask(e, listId, setMessage, getData, setUser, setList, setTask)}>
+      <form className="create-form" action="" onSubmit={(e) => createTask(e, listId, setMessage, getData, setUser, setList, setTask)}>
         <fieldset>
           <legend>New Task</legend>
           <input

@@ -4,7 +4,11 @@ export const deleteList = async (listId, setUser, setList, setTask, setMessage) 
     const URL = import.meta.env.VITE_BACKENDURL;
     const password = prompt("Enter your password: ");
     if(password === null){
-      return console.log("List not deleted!")
+       console.log("List not deleted!")
+     return setMessage({
+        topic: "List not deleted!",
+        show: true,
+      });
     }
     try {
       const response = await fetch(`${URL}/list`, {
