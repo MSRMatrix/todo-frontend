@@ -3,15 +3,10 @@ import { useContext, useState } from "react";
 import { List, Message, Task, User } from "../context/ContextData";
 import CreateTask from "../createTask/CreateTask";
 import { deleteList } from "../functions/deleteList";
-import { removeTask } from "../functions/removeTask";
 import { emptyList } from "../functions/emptyList";
-import { checkTask } from "../functions/checkTask";
-import { updateTask } from "../functions/updateTask";
 import { updateList } from "../functions/updateList";
 import { toggleAllTasks } from "../functions/toggleAllTasks";
-import CheckedList from "./list/CheckedList";
-import UnCheckedList from "./list/UnCheckedList";
-import ListComponent from "./list/CheckedList";
+import ListComponent from "./list/ListComponent";
 
 const DisplayList = () => {
   const { user, setUser } = useContext(User);
@@ -46,10 +41,10 @@ const DisplayList = () => {
     <>
       {list.map((listItem) => (
         <div key={listItem._id} className="list-container">
-          <div className="task">
+          <div>
             {update !== listItem._id ? (
               <div>
-                <h2>{listItem.name}</h2>
+                <h1>Listname: {listItem.name}</h1>
                 <p>{listItem.description}</p>
               </div>
             ) : (
@@ -128,10 +123,6 @@ const DisplayList = () => {
           </div>
 
           <ul className="task-div">
-            {/* <ul className="filter-tasks">
-            <li>Unfinished Tasks</li>    
-            <li>Finished Tasks</li>
-            </ul> */}
             <h2>
               Tasks completed: {taskComplete(listItem)}/{taskLength(listItem)}{" "}
               {taskComplete(listItem) === taskLength(listItem) &&
@@ -145,7 +136,6 @@ const DisplayList = () => {
               <div className="task-div">
                 <ListComponent listItem={listItem} />
               </div>
-              {/* <div className="unchecked-task"><UnCheckedList listItem={listItem}/></div> */}
             </ul>
           </ul>
           {taskLength(listItem) < 4 ? <CreateTask listId={listItem._id} /> : ""}

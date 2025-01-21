@@ -20,4 +20,5 @@ html {
   display: flex;
   justify-content: center;
   width: fit-content;
+  height: 100vh;
 }

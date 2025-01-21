@@ -5,6 +5,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { toggleTwoFactorAuthentication } from "../functions/toogleTwoFactorAuthentication";
 import { updateProfile } from "../functions/updateProfile";
 import { inputFunction } from "../functions/inputFunction";
+import "./profile.css"
+import { deleteUser } from "../functions/deleteUser";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -17,6 +19,7 @@ const Profile = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { field, setField } = useContext(Field);
   const [see, setSee] = useState(false);
+  const [typeChange, setTypeChange] = useState("password")
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,7 +34,7 @@ const Profile = () => {
 
   return (
     <>
-      <div>
+      <div className="update-form">
         <button
           onClick={() => {
             setUpdate((prevMode) => !prevMode), setShowPassword(false);
@@ -40,7 +43,7 @@ const Profile = () => {
           {update ? "Close Update" : "Open Update"}
         </button>
         {update ? (
-          <form
+          <form 
             action=""
             onSubmit={(e) =>
               updateProfile(e, setUser, setMessage, setUpdate, setShowPassword)
@@ -81,10 +84,18 @@ const Profile = () => {
                   )}
                 </div>
                 <p>{field[key].message}</p>
+                
               </div>
             ))}
+            
             <legend>Type in your password to confirm your changes: </legend>
-            <input type="password" name="confirmPassword" required />
+            <div className={"eye-div"}>
+            <input placeholder="Repeat your old password" type={typeChange} name="confirmPassword" required />
+            
+                    <i
+                      className={`fa-solid ${typeChange === "text" ? "fa-eye" : "fa-eye-slash"}`}
+                      onClick={() => setTypeChange(((prevMode) => prevMode === "password" ? "text" : "password"))}
+                    ></i></div>
             <button type="submit">Submit your changes</button>
           </form>
         ) : (
@@ -104,6 +115,8 @@ const Profile = () => {
             ? "Deactivate Two Factor Authentication"
             : "Activate Two Factor Authentication"}
         </button>
+
+        <button onClick={() => deleteUser(setMessage, navigate)}>Delete Profile</button>
       </div>
       <NavLink to="/workspace"><i className="fa-solid fa-arrow-left-long"></i>Back</NavLink>
     </>

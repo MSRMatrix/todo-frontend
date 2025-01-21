@@ -32,6 +32,14 @@ export const login = async (e, navigate, setUser, setMessage) => {
     return navigate("/verify");
   }
 
+  if (response.status === 418) {
+    setMessage({
+      topic: text,
+      show: true,
+    });
+    return navigate("/");
+  }
+
   if (response.status === 401) {
     setMessage({
       topic: text,
