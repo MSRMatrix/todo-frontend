@@ -15,7 +15,7 @@ const Verify = () => {
   const formName = "Verify";
 
   return (
-    <>
+    <div className="form-div">
       <form action="" onSubmit={(e) => verifyProfile(e, navigate, setMessage)}>
         <fieldset>
           <legend>Verify Account</legend>
@@ -74,8 +74,8 @@ const Verify = () => {
           </button>
         </fieldset>
       </form>
-      <NavLink to="/"><i className="fa-solid fa-arrow-left-long"></i>Back</NavLink>
-    </>
+      <NavLink to="/"><i className="fa-solid fa-arrow-left-long"></i> Back</NavLink>
+    </div>
   );
 };
 

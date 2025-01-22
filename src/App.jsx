@@ -17,6 +17,7 @@ import Workspace from "./components/workspace/Workspace";
 import Verify from "./components/verify/Verify";
 import Profile from "./components/profile/Profile";
 import TwoFactorAuthentication from "./components/twoFactorAuthentication/TwoFactorAuthentication";
+import Options from "./components/options/Options";
 
 function App() {
   const [user, setUser] = useState([]);
@@ -70,6 +71,9 @@ function App() {
           element: <Profile />,
           path: "/profile",
         },
+        {element: <Options />,
+          path:"/options",
+        }
       ],
     },
     {

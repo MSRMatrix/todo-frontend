@@ -15,7 +15,7 @@ const TwoFactorAuthentication = () => {
   const formName = "Verify";
 
   return (
-    <>
+    <div className="form-div">
       <form
         action=""
         onSubmit={(e) => twoFactorAuthentication(e, setMessage, navigate)}
@@ -77,8 +77,8 @@ const TwoFactorAuthentication = () => {
           </button>
         </fieldset>
       </form>
-      <NavLink to="/"><i className="fa-solid fa-arrow-left-long"></i>Back</NavLink>
-    </>
+      <NavLink to="/"><i className="fa-solid fa-arrow-left-long"></i> Back</NavLink>
+    </div>
   );
 };
 

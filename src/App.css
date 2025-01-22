@@ -117,3 +117,144 @@ a:active {
   transform: translateY(1px); 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+
+.form-div {
+  margin: 0 auto;
+  padding: 20px;
+  width: 90%;
+  max-width: 600px;
+  background: linear-gradient(145deg, #4b4b6a, #2c2c3e);
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  font-family: "Arial", sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-div fieldset {
+  border: 2px solid #7cff7c;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #3e3e5e;
+}
+
+.form-div legend {
+  text-align: start;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #b0f7b0;
+}
+
+.form-div input,
+.form-div textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  color: #b0f7b0;
+  border: 1px solid #4b4b6a;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.form-div input:focus,
+.form-div textarea:focus {
+  outline: none;
+  border-color: #7cff7c;
+  background-color: #21212e;
+}
+
+.form-div button {
+  background-color: #7cff7c;
+  color: #2c2c3e;
+  border: none;
+  padding: 12px 20px;
+  margin-top: 20px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.2s;
+}
+
+.form-div button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.form-div button:focus {
+  outline: none;
+}
+
+.form-div button:active {
+  transform: scale(0.95);
+}
+
+
+.form-div a {
+  background-color: #7cff7c;
+  color: #2c2c3e;
+  border: none;
+  padding: 12px 20px;
+  margin-top: 20px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  display: inline-block;
+  transition: background-color 0.2s ease-in-out, transform 0.2s;
+  text-decoration: none; 
+}
+
+.form-div a:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.form-div a:focus {
+  outline: none;
+}
+
+.form-div a:active {
+  transform: scale(0.95);
+}
+
+.form-div .eye-div i {
+  cursor: pointer;
+}
+
+.form-div p {
+  margin: 0;
+  color: #ff7f7f;
+}
+
+.form-div .disable-button {
+  background-color: #a6a6a6;
+  color: #4b4b4b;
+  cursor: not-allowed;
+}
+
+.form-div .enable-button {
+  background-color: #7cff7c;
+}
+
+@media (max-width: 768px) {
+  .form-div {
+      width: 95%;
+      padding: 15px;
+  }
+
+  .form-div legend {
+      font-size: 1.6rem;
+  }
+
+  .form-div input,
+  .form-div textarea {
+      font-size: 0.9rem;
+  }
+
+  .form-div button {
+      font-size: 1rem;
+      padding: 10px 15px;
+  }
+}

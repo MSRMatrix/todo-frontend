@@ -1,4 +1,4 @@
-export const updateProfile = async (e, setUser, setMessage, setUpdate, setShowPassword) => {
+export const updateProfile = async (e, setUser, setMessage, setUpdate, setShowPassword, navigate) => {
     e.preventDefault();
     const URL = import.meta.env.VITE_BACKENDURL;
     const formData = new FormData(e.target);
@@ -41,6 +41,7 @@ export const updateProfile = async (e, setUser, setMessage, setUpdate, setShowPa
           topic: text,
           show: true,
         });
+        return navigate("/profile")
       }
     } catch (error) {
       console.error("Error toggling 2FA:", error);

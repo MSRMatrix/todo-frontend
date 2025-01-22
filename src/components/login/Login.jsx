@@ -16,7 +16,7 @@ const Login = () => {
   const [toggleName, setToggleName] = useState("email");
 
   return (
-    <>
+    <div className="form-div">
       <form action="" onSubmit={(e) => login(e, navigate, setUser, setMessage)}>
         <fieldset>
           <legend>Login</legend>
@@ -72,8 +72,8 @@ const Login = () => {
         </fieldset>
       </form>
 
-      <NavLink to="/"><i className="fa-solid fa-arrow-left-long"></i>Back</NavLink>
-    </>
+      <NavLink to="/"><i className="fa-solid fa-arrow-left-long"></i> Back</NavLink>
+    </div>
   );
 };
 

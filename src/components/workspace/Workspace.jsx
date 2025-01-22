@@ -4,7 +4,7 @@ import { useContext, useEffect } from "react";
 import { List, Task, User } from "../context/ContextData";
 import CreateList from "../createList/CreateList";
 import { getData } from "../functions/getData";
-import Options from "../options/Options";
+import Navbar from "../navbar/Navbar";
 
 const Workspace = () => {
   const { user, setUser } = useContext(User);
@@ -17,7 +17,7 @@ const Workspace = () => {
 
   return (
     <>
-      <Options />
+      <Navbar />
       {Array.isArray(list) && list.length < 4 ? <CreateList /> : ""}
       <DisplayList />
     </>

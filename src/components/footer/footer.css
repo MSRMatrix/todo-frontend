@@ -1,7 +1,30 @@
-.footer{
+.footer {
     margin-top: 10px;
-    position: absolute;
-    background: #004724;
+    background: linear-gradient(145deg, #4b4b6a, #2c2c3e);
     width: 100%;
-    padding: 10px;
+    padding: 20px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 1rem;
+    font-family: "Arial", sans-serif;
+    border-top: 2px solid #7cff7c;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.footer p {
+    margin: 0;
+    color: #b0f7b0;
+}
+
+.footer:hover {
+    background: linear-gradient(145deg, #2c2c3e, #1a1a26);
+    box-shadow: 0 -6px 12px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 15px;
+        font-size: 0.9rem;
+    }
 }

@@ -13,7 +13,7 @@ const Registration = () => {
   const formName = "Registration";
 
   return (
-    <>
+    <div className="form-div">
       <form onSubmit={(e) => registrationFunction(e, navigate, setMessage)}>
         <fieldset>
           <legend>Registration</legend>
@@ -60,8 +60,8 @@ const Registration = () => {
           </button>
         </fieldset>
       </form>
-      <NavLink to="/"><i className="fa-solid fa-arrow-left-long"></i>Back</NavLink>
-    </>
+      <NavLink to="/"><i className="fa-solid fa-arrow-left-long"></i> Back</NavLink>
+    </div>
   );
 };
 

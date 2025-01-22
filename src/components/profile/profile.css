@@ -1,95 +1,127 @@
-.update-form {
-    margin: 0 auto;
+.update-form,
+.profile {
+  margin: 0 auto;
+  padding: 20px;
+  width: 90%;
+  max-width: 600px;
+  background: linear-gradient(145deg, #4b4b6a, #2c2c3e);
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  font-family: "Arial", sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.update-form h1,
+.profile h3 {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #a259ff;
+}
+
+.update-form  {
+  form {
+    border: 2px solid #7cff7c;
     padding: 20px;
-    width: 90%;
-    max-width: 600px;
-    background-color: #2e2e3e;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    color: #f5f5f5;
-    font-family: "Arial", sans-serif;
-    display: flex;
-    flex-direction: column;
-    h1 {
-      text-align: center;
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-      color: #e0e0e0;
-    }
-  
-    fieldset {
-      border: 2px solid #4caf50;
-      padding: 20px;
-      border-radius: 8px;
-      background-color: #3a3a4f;
-      margin-bottom: 20px;
-    }
-  
-    legend {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #e0e0e0;
-      margin-bottom: 10px;
-    }
-  
-    input,
-    textarea {
-      width: 100%;
-      padding: 12px;
-      margin-top: 8px;
-      background-color: #2e2e3e;
-      color: #e0e0e0;
-      border: 1px solid #3a3a4a;
-      border-radius: 8px;
-      font-size: 1rem;
-      resize: vertical;
-    }
-  
-    input:focus,
-    textarea:focus {
-      outline: none;
-      border-color: #4caf50;
-      background-color: #21212e;
-    }
-  
-    button {
-      background-color: #4caf50;
-      color: #ffffff;
-      border: none;
-      padding: 12px 20px;
-      margin-top: 20px;
-      font-size: 1.1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.2s ease-in-out;
-    }
-  
-    button:hover {
-      background-color: #45a049;
-    }
-  
-    button:focus {
-      outline: none;
-    }
+    border-radius: 12px;
+    background-color: #3e3e5e;
   }
-  
-  @media (max-width: 768px) {
-    .create-list-form {
-      width: 95%;
-  
-      h1 {
-        font-size: 1.6rem;
-      }
-  
-      input,
-      textarea {
-        font-size: 0.9rem;
-      }
-  
-      button {
-        font-size: 1rem;
-        padding: 10px 15px;
-      }
-    }
+}
+.profile-data{
+  border: 2px solid #7cff7c;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #3e3e5e;
+}
+
+
+.update-form fieldset,
+.profile p {
+  border: 2px solid #7cff7c;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #3e3e5e;
+}
+
+.update-form legend,
+.profile h3 {
+  text-align: start;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #b0f7b0;
+}
+
+.update-form input,
+.update-form textarea,
+.profile p {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  color: #b0f7b0;
+  border: 1px solid #4b4b6a;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.update-form input:focus,
+.update-form textarea:focus {
+  outline: none;
+  border-color: #7cff7c;
+  background-color: #21212e;
+}
+
+.update-form button,
+.profile a {
+  background-color: #7cff7c;
+  color: #2c2c3e;
+  border: none;
+  padding: 12px 20px;
+  margin-top: 20px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.2s;
+}
+
+.update-form button:hover,
+.profile a:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.update-form button:focus,
+.profile a:focus {
+  outline: none;
+}
+
+.update-form button:active,
+.profile a:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 768px) {
+  .update-form,
+  .profile {
+    width: 95%;
+    padding: 15px;
   }
-  
+
+  .update-form h1,
+  .profile h3 {
+    font-size: 1.6rem;
+  }
+
+  .update-form input,
+  .update-form textarea,
+  .profile p {
+    font-size: 0.9rem;
+  }
+
+  .update-form button,
+  .profile a {
+    font-size: 1rem;
+    padding: 10px 15px;
+  }
+}
