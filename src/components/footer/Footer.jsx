@@ -1,9 +1,9 @@
 import "./footer.css"
 
-const Footer = () => {
+const Footer = ({server}) => {
     return(
         <div className="footer">
-        Footer
+       <p>{server.name}</p>
         </div>
     )
 }
