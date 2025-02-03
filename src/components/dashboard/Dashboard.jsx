@@ -3,7 +3,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import Footer from "../footer/Footer";
 import Header from "../header/Header";
 import PopUp from "../popUp/PopUp";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Field, List, Message, Task, User } from "../context/ContextData";
 
 const Dashboard = () => {
@@ -13,6 +13,11 @@ const { user, setUser } = useContext(User);
   const { task, setTask } = useContext(Task);
   const { field, setField } = useContext(Field);
   const navigate = useNavigate()
+  const [test, setTest] = useState({
+    name: "Server is loading!",
+    loading: true,
+    className: "show-loading"
+  })
 
   if (message.show) {
       setTimeout(() => {
@@ -31,12 +36,16 @@ const { user, setUser } = useContext(User);
         credentials: "include",
       });
       const data = await response.json();
-      
+      setTest({
+          name: "Server are now online!",
+    loading: false
+        })
       if (!response.ok) {
         console.log(`No cookie available!`);
 
          navigate("/")
       } else {
+        
         setUser(data.user);
         setList(data.list);
         setTask(data.task);
@@ -57,12 +66,19 @@ const { user, setUser } = useContext(User);
     });
   }, []);
 
+  if(!test.loading && test.className === "show-loading"){
+     setTest({
+  className: "hide-loading"
+}) 
+  }
+
   return (
     <>
       <Header />
       <Outlet />
       <Footer />
       {message.show ? <PopUp /> : <></>}
+      <p className={test.className}>{test.name}</p>
     </>
   );
 };
