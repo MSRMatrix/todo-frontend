@@ -22,3 +22,11 @@ html {
   width: fit-content;
   height: 100vh;
 }
+
+body{
+  display: flex;
+  flex-direction: column; 
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+}

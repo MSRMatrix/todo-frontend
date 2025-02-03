@@ -1,5 +1,5 @@
 .header {
-  width: 100vw;
+
   h1 {
     margin: 0 auto;
     font-weight: bolder;
@@ -8,7 +8,8 @@
     color: transparent;
     text-shadow: 1px 1px 2px #a8e4a0, 0 0 0em #a8e4a0, 0 0 0.2em #a8e4a0;
     position: relative;
-    width: 208px;
+    width: 275px;
+    
     &::after {
       content: "";
       background-color: #a8e4a0;
@@ -17,9 +18,9 @@
       left: 0;
       right: 0;
       bottom: 3px;
-      height: 4px;
+      height: 10px;
       width: inherit;
-      border-radius: 2px;
+      border-radius: 10px;
       animation-name: underline;
       animation-duration: 2s;
       animation-iteration-count: infinite;
@@ -30,7 +31,7 @@
       animation-duration: 2s;
       animation-iteration-count: infinite;
       animation-timing-function: ease-in-out;
-      font-size: 60px;
+      font-size: 80px;
 
       &:nth-child(2) {
         animation-name: second;

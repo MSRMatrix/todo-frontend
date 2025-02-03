@@ -71,12 +71,12 @@ const Dashboard = () => {
   }
 
   return (
-    <>
+    <div className="dashboard">
       <Header />
       <Outlet />
       <Footer server={server} />
       {message.show ? <PopUp /> : <></>}
-    </>
+    </div>
   );
 };
 
